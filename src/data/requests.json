@@ -1,0 +1,56 @@
+[
+  {
+    "id": "req-001",
+    "datasetId": "ds-001",
+    "requesterId": "user-001",
+    "status": "pending",
+    "purpose": "Longitudinal study on patient flow optimization in emergency departments to reduce wait times and improve resource allocation.",
+    "accessModel": "a2d",
+    "createdAt": "2025-09-01"
+  },
+  {
+    "id": "req-002",
+    "datasetId": "ds-004",
+    "requesterId": "user-003",
+    "status": "approved",
+    "purpose": "Retrospective analysis of COVID-19 vaccination effectiveness across age groups to inform booster campaign strategy.",
+    "accessModel": "data-behind-glass",
+    "createdAt": "2025-08-15"
+  },
+  {
+    "id": "req-003",
+    "datasetId": "ds-006",
+    "requesterId": "user-003",
+    "status": "approved",
+    "purpose": "Training a deep-learning model for automated chest X-ray triage to support radiologist workflow in high-volume settings.",
+    "accessModel": "data-behind-glass",
+    "createdAt": "2025-07-22"
+  },
+  {
+    "id": "req-004",
+    "datasetId": "ds-002",
+    "requesterId": "user-001",
+    "status": "denied",
+    "purpose": "Exploratory genome-wide association study on rare metabolic disorders for a master thesis project.",
+    "accessModel": "data-behind-glass",
+    "createdAt": "2025-10-03"
+  },
+  {
+    "id": "req-005",
+    "datasetId": "ds-009",
+    "requesterId": "user-004",
+    "status": "pending",
+    "purpose": "Development of improved signal detection algorithms for pharmacovigilance using disproportionality analysis methods.",
+    "accessModel": "a2d",
+    "createdAt": "2025-11-10"
+  },
+  {
+    "id": "req-006",
+    "datasetId": "ds-005",
+    "requesterId": "user-003",
+    "status": "approved",
+    "purpose": "Benchmarking a proprietary stroke outcome prediction model against real-world registry data for regulatory submission.",
+    "accessModel": "a2d",
+    "createdAt": "2025-06-28"
+  }
+]

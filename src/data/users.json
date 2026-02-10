@@ -1,0 +1,47 @@
+[
+  {
+    "id": "user-001",
+    "email": "anna.lindberg@gu.se",
+    "password": "demo",
+    "name": "Dr. Anna Lindberg",
+    "role": "data-user",
+    "organization": "Goteborgs Universitet",
+    "membershipTier": "public"
+  },
+  {
+    "id": "user-002",
+    "email": "erik.nordstrom@vgregion.se",
+    "password": "demo",
+    "name": "Erik Nordstrom",
+    "role": "data-holder",
+    "organization": "Vastra Gotalandsregionen",
+    "membershipTier": "public"
+  },
+  {
+    "id": "user-003",
+    "email": "maria.chen@astrazeneca.com",
+    "password": "demo",
+    "name": "Maria Chen",
+    "role": "data-user",
+    "organization": "AstraZeneca",
+    "membershipTier": "strategic"
+  },
+  {
+    "id": "user-004",
+    "email": "johan.berg@ki.se",
+    "password": "demo",
+    "name": "Johan Berg",
+    "role": "data-holder",
+    "organization": "Karolinska Institutet",
+    "membershipTier": "public"
+  },
+  {
+    "id": "user-005",
+    "email": "admin@hdip.se",
+    "password": "admin",
+    "name": "HDIP Admin",
+    "role": "admin",
+    "organization": "HDIP",
+    "membershipTier": "public"
+  }
+]

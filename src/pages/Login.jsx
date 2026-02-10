@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
 const DEMO_ACCOUNTS = [
-  { email: 'researcher@gu.se', password: 'demo', label: 'Data User' },
+  { email: 'anna.lindberg@gu.se', password: 'demo', label: 'Data User' },
   { email: 'erik.nordstrom@vgregion.se', password: 'demo', label: 'Data Holder' },
   { email: 'admin@hdip.se', password: 'admin', label: 'Admin' },
 ];

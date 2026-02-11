@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, Link } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { DataProvider } from './context/DataContext';
 
@@ -61,7 +61,8 @@ export default function App() {
                 <div className="flex items-center justify-center min-h-[60vh]">
                   <div className="text-center">
                     <h2 className="text-4xl font-bold text-gray-800 mb-2">404</h2>
-                    <p className="text-gray-600">Page not found.</p>
+                    <p className="text-gray-600 mb-4">Page not found.</p>
+                    <Link to="/" className="text-sm font-medium text-teal-600 hover:text-teal-700">Back to home</Link>
                   </div>
                 </div>
               } />

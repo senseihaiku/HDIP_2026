@@ -25,7 +25,7 @@ function formatDate(dateStr) {
 }
 
 export default function HolderDashboard() {
-  const { currentUser } = useAuth();
+  const { currentUser, users } = useAuth();
   const { datasets, accessRequests, updateRequestStatus } = useData();
 
   // Datasets belonging to the current holder's organization
@@ -57,8 +57,6 @@ export default function HolderDashboard() {
     return ds?.title ?? id;
   };
 
-  // Resolve requester info from the users list via useAuth
-  const { users } = useAuth();
   const requesterInfo = (id) => {
     const user = users.find((u) => u.id === id);
     return user

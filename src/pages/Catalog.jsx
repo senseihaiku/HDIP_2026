@@ -16,14 +16,6 @@ const SORT_OPTIONS = [
   { value: 'records', label: 'Record Count' },
 ];
 
-const FAIR_SCORE_OPTIONS = [
-  { value: 0, label: 'Any' },
-  { value: 4, label: '4+' },
-  { value: 8, label: '8+' },
-  { value: 12, label: '12+' },
-  { value: 16, label: '16+' },
-  { value: 20, label: '20' },
-];
 
 export default function Catalog() {
   const { datasets } = useData();

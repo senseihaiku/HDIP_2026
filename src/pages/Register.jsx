@@ -11,7 +11,7 @@ const INITIAL_FORM = {
 };
 
 export default function Register() {
-  const { register } = useAuth();
+  const { register, users } = useAuth();
   const navigate = useNavigate();
 
   const [form, setForm] = useState(INITIAL_FORM);
@@ -38,6 +38,14 @@ export default function Register() {
       newErrors.password = 'Password must be at least 4 characters';
     if (!form.organization.trim())
       newErrors.organization = 'Organization is required';
+    if (
+      form.email.trim() &&
+      users.some(
+        (u) => u.email.toLowerCase() === form.email.trim().toLowerCase()
+      )
+    ) {
+      newErrors.email = 'An account with this email already exists';
+    }
     return newErrors;
   };
 

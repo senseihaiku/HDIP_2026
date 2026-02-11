@@ -22,6 +22,9 @@ export default function Pricing() {
         </span>
         <button
           onClick={() => setShowCommercial(!showCommercial)}
+          role="switch"
+          aria-checked={showCommercial}
+          aria-label="Toggle between academic and commercial pricing"
           className={`relative w-14 h-7 rounded-full transition-colors ${
             showCommercial ? 'bg-teal-600' : 'bg-gray-300'
           }`}

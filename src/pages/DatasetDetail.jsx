@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useData } from '../context/DataContext';
 import { useAuth } from '../context/AuthContext';
@@ -56,6 +56,15 @@ function RequestAccessModal({ dataset, onClose, onSubmit }) {
   const [purpose, setPurpose] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+
+  // Close on Escape key
+  useEffect(() => {
+    function handleEscape(e) {
+      if (e.key === 'Escape') onClose();
+    }
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [onClose]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -120,7 +129,7 @@ function RequestAccessModal({ dataset, onClose, onSubmit }) {
         className="fixed inset-0 bg-black/40 backdrop-blur-sm"
         onClick={onClose}
       />
-      <div className="relative w-full max-w-lg rounded-2xl bg-white p-6 shadow-xl">
+      <div role="dialog" aria-modal="true" className="relative w-full max-w-lg rounded-2xl bg-white p-6 shadow-xl">
         <div className="flex items-center justify-between mb-5">
           <h3 className="text-lg font-semibold text-gray-900">
             Request Access
@@ -377,6 +386,14 @@ export default function DatasetDetail() {
           </div>
 
           {/* Request Access button */}
+          {!isAuthenticated && (
+            <Link
+              to="/login"
+              className="shrink-0 inline-flex items-center gap-2 rounded-lg border border-teal-600 px-5 py-2.5 text-sm font-semibold text-teal-700 hover:bg-teal-50 transition-colors"
+            >
+              Log in to request access
+            </Link>
+          )}
           {isDataUser && (
             <button
               onClick={() => setShowRequestModal(true)}

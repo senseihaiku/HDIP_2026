@@ -1,18 +1,32 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
 export default function Navbar() {
   const { currentUser, isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const userMenuRef = useRef(null);
 
   const handleLogout = () => {
     logout();
     setUserMenuOpen(false);
     navigate('/');
   };
+
+  // Close dropdown on outside click
+  useEffect(() => {
+    if (!userMenuOpen) return;
+    function handleClickOutside(e) {
+      if (userMenuRef.current && !userMenuRef.current.contains(e.target)) {
+        setUserMenuOpen(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [userMenuOpen]);
 
   const navLinks = [
     { to: '/catalog', label: 'Catalog' },
@@ -26,6 +40,10 @@ export default function Navbar() {
     : [];
 
   const allLinks = [...navLinks, ...authedLinks];
+
+  function isActive(path) {
+    return location.pathname === path || location.pathname.startsWith(path + '/');
+  }
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-gray-200">
@@ -42,7 +60,11 @@ export default function Navbar() {
               <Link
                 key={link.to}
                 to={link.to}
-                className="text-sm font-medium text-gray-600 hover:text-teal-700 transition-colors"
+                className={`text-sm font-medium transition-colors ${
+                  isActive(link.to)
+                    ? 'text-teal-700 border-b-2 border-teal-600 pb-0.5'
+                    : 'text-gray-600 hover:text-teal-700'
+                }`}
               >
                 {link.label}
               </Link>
@@ -52,9 +74,11 @@ export default function Navbar() {
           {/* Desktop right side */}
           <div className="hidden md:flex items-center space-x-4">
             {isAuthenticated ? (
-              <div className="relative">
+              <div className="relative" ref={userMenuRef}>
                 <button
                   onClick={() => setUserMenuOpen(!userMenuOpen)}
+                  aria-expanded={userMenuOpen}
+                  aria-haspopup="true"
                   className="flex items-center space-x-2 text-sm font-medium text-gray-700 hover:text-teal-700 transition-colors focus:outline-none"
                 >
                   <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-teal-100 text-teal-700 font-semibold text-xs">
@@ -129,7 +153,11 @@ export default function Navbar() {
                 key={link.to}
                 to={link.to}
                 onClick={() => setMobileOpen(false)}
-                className="block px-3 py-2 text-sm font-medium text-gray-600 hover:text-teal-700 hover:bg-gray-50 rounded-md"
+                className={`block px-3 py-2 text-sm font-medium rounded-md ${
+                  isActive(link.to)
+                    ? 'text-teal-700 bg-teal-50'
+                    : 'text-gray-600 hover:text-teal-700 hover:bg-gray-50'
+                }`}
               >
                 {link.label}
               </Link>

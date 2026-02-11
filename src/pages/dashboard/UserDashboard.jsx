@@ -166,10 +166,7 @@ export default function UserDashboard() {
             {recommended.map((ds) => (
               <DatasetCard
                 key={ds.id}
-                dataset={{
-                  ...ds,
-                  holderName: ds.holder?.name,
-                }}
+                dataset={ds}
               />
             ))}
           </div>

@@ -6,11 +6,19 @@ function truncate(text, maxLength = 120) {
   return text.slice(0, maxLength).trimEnd() + '...';
 }
 
+function formatCategory(cat) {
+  if (!cat) return '';
+  return cat
+    .split('-')
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(' ');
+}
+
 export default function DatasetCard({ dataset }) {
   const {
     id,
     title,
-    holderName,
+    holder,
     description,
     category,
     fairScore,
@@ -31,7 +39,7 @@ export default function DatasetCard({ dataset }) {
       </div>
 
       {/* Holder */}
-      <p className="text-sm text-gray-500 mb-3">{holderName}</p>
+      <p className="text-sm text-gray-500 mb-3">{holder?.name}</p>
 
       {/* Description */}
       <p className="text-sm text-gray-600 leading-relaxed mb-4">
@@ -42,7 +50,7 @@ export default function DatasetCard({ dataset }) {
       <div className="flex flex-wrap items-center gap-2">
         {category && (
           <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-teal-50 text-teal-700 border border-teal-200">
-            {category}
+            {formatCategory(category)}
           </span>
         )}
         {accessModels?.map((model) => (

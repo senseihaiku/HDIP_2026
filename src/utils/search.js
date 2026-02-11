@@ -3,14 +3,20 @@ export function searchDatasets(datasets, query = '', filters = {}) {
 
   if (query.trim()) {
     const q = query.toLowerCase();
-    results = results.filter(
-      (ds) =>
-        ds.title.toLowerCase().includes(q) ||
-        ds.description.toLowerCase().includes(q) ||
-        ds.tags.some((t) => t.toLowerCase().includes(q)) ||
-        ds.holder.name.toLowerCase().includes(q) ||
-        ds.category.toLowerCase().includes(q)
-    );
+    results = results.filter((ds) => {
+      const title = ds.title?.toLowerCase() || '';
+      const description = ds.description?.toLowerCase() || '';
+      const category = ds.category?.toLowerCase() || '';
+      const holderName = ds.holder?.name?.toLowerCase() || '';
+      const tags = ds.tags || [];
+      return (
+        title.includes(q) ||
+        description.includes(q) ||
+        category.includes(q) ||
+        holderName.includes(q) ||
+        tags.some((t) => t.toLowerCase().includes(q))
+      );
+    });
   }
 
   if (filters.category) {
@@ -18,15 +24,19 @@ export function searchDatasets(datasets, query = '', filters = {}) {
   }
 
   if (filters.holder) {
-    results = results.filter((ds) => ds.holder.id === filters.holder);
+    results = results.filter((ds) => ds.holder?.id === filters.holder);
   }
 
   if (filters.accessModel) {
-    results = results.filter((ds) => ds.accessModels.includes(filters.accessModel));
+    results = results.filter(
+      (ds) => ds.accessModels && ds.accessModels.includes(filters.accessModel)
+    );
   }
 
   if (filters.minFairScore) {
-    results = results.filter((ds) => ds.fairScore.total >= filters.minFairScore);
+    results = results.filter(
+      (ds) => (ds.fairScore?.total ?? 0) >= filters.minFairScore
+    );
   }
 
   if (filters.status) {
@@ -35,11 +45,13 @@ export function searchDatasets(datasets, query = '', filters = {}) {
 
   // Sorting
   if (filters.sortBy === 'fair') {
-    results.sort((a, b) => b.fairScore.total - a.fairScore.total);
+    results.sort(
+      (a, b) => (b.fairScore?.total ?? 0) - (a.fairScore?.total ?? 0)
+    );
   } else if (filters.sortBy === 'date') {
     results.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
   } else if (filters.sortBy === 'records') {
-    results.sort((a, b) => b.recordCount - a.recordCount);
+    results.sort((a, b) => (b.recordCount ?? 0) - (a.recordCount ?? 0));
   }
 
   return results;

@@ -1,6 +1,12 @@
 import { Link } from 'react-router-dom';
 import FairBadge from './FairBadge';
 
+const ACCESS_MODEL_STYLES = {
+  'a2d': { label: 'Algorithm to Data (A2D)', short: 'A2D', bg: 'bg-green-50', text: 'text-green-700', border: 'border-green-200' },
+  'data-behind-glass': { label: 'Data Behind Glass', short: 'Data Behind Glass', bg: 'bg-blue-50', text: 'text-blue-700', border: 'border-blue-200' },
+  'metadata-light': { label: 'Metadata Light', short: 'Metadata Light', bg: 'bg-amber-50', text: 'text-amber-700', border: 'border-amber-200' },
+};
+
 function truncate(text, maxLength = 120) {
   if (!text || text.length <= maxLength) return text;
   return text.slice(0, maxLength).trimEnd() + '...';
@@ -21,6 +27,7 @@ export default function DatasetCard({ dataset }) {
     holder,
     description,
     category,
+    domain,
     fairScore,
     accessModels,
   } = dataset;
@@ -39,7 +46,14 @@ export default function DatasetCard({ dataset }) {
       </div>
 
       {/* Holder */}
-      <p className="text-sm text-gray-500 mb-3">{holder?.name}</p>
+      <div className="flex flex-wrap items-center gap-2 mb-3">
+        <p className="text-sm text-gray-500">{holder?.name}</p>
+        {domain && (
+          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-50 text-purple-700 border border-purple-200">
+            {formatCategory(domain)}
+          </span>
+        )}
+      </div>
 
       {/* Description */}
       <p className="text-sm text-gray-600 leading-relaxed mb-4">
@@ -53,14 +67,14 @@ export default function DatasetCard({ dataset }) {
             {formatCategory(category)}
           </span>
         )}
-        {accessModels?.map((model) => (
-          <span
-            key={model}
-            className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-600 border border-gray-200"
-          >
-            {model}
-          </span>
-        ))}
+        {accessModels?.map((model) => {
+          const style = ACCESS_MODEL_STYLES[model] || { short: model, bg: 'bg-gray-100', text: 'text-gray-600', border: 'border-gray-200' };
+          return (
+            <span key={model} className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${style.bg} ${style.text} border ${style.border}`}>
+              {style.short}
+            </span>
+          );
+        })}
       </div>
     </Link>
   );

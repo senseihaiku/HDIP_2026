@@ -29,6 +29,17 @@ export function DataProvider({ children }) {
     localStorage.setItem('hdip_requests', JSON.stringify(accessRequests));
   }, [accessRequests]);
 
+  // Bookmarks: load from localStorage or fall back to empty array
+  const [bookmarks, setBookmarks] = useState(() => {
+    const stored = localStorage.getItem('hdip_bookmarks');
+    return stored ? JSON.parse(stored) : [];
+  });
+
+  // Persist bookmarks to localStorage on change
+  useEffect(() => {
+    localStorage.setItem('hdip_bookmarks', JSON.stringify(bookmarks));
+  }, [bookmarks]);
+
   // Search / filter datasets using the utility function
   const searchDatasets = useCallback(
     (query = '', filters = {}) => {
@@ -72,6 +83,21 @@ export function DataProvider({ children }) {
     return newRequest;
   }, []);
 
+  // Toggle a dataset bookmark on/off
+  const toggleBookmark = useCallback((datasetId) => {
+    setBookmarks((prev) =>
+      prev.includes(datasetId)
+        ? prev.filter((id) => id !== datasetId)
+        : [...prev, datasetId]
+    );
+  }, []);
+
+  // Check if a dataset is bookmarked
+  const isBookmarked = useCallback(
+    (datasetId) => bookmarks.includes(datasetId),
+    [bookmarks]
+  );
+
   // Update the status of an existing access request
   const updateRequestStatus = useCallback((requestId, newStatus) => {
     setAccessRequests((prev) =>
@@ -91,6 +117,9 @@ export function DataProvider({ children }) {
     accessRequests,
     createRequest,
     updateRequestStatus,
+    bookmarks,
+    toggleBookmark,
+    isBookmarked,
   };
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;

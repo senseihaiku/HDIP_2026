@@ -13,6 +13,9 @@ import DatasetDetail from './pages/DatasetDetail';
 import Pricing from './pages/Pricing';
 import About from './pages/About';
 import AccessModels from './pages/AccessModels';
+import Documentation from './pages/Documentation';
+import Providers from './pages/Providers';
+import ProviderDetail from './pages/ProviderDetail';
 import HolderDashboard from './pages/dashboard/HolderDashboard';
 import UserDashboard from './pages/dashboard/UserDashboard';
 import NewDataset from './pages/dashboard/NewDataset';
@@ -41,6 +44,9 @@ export default function App() {
               <Route path="/pricing" element={<Pricing />} />
               <Route path="/about" element={<About />} />
               <Route path="/access-models" element={<AccessModels />} />
+              <Route path="/documentation" element={<Documentation />} />
+              <Route path="/providers" element={<Providers />} />
+              <Route path="/providers/:id" element={<ProviderDetail />} />
 
               {/* Dashboard redirect */}
               <Route path="/dashboard" element={<DashboardRedirect />} />

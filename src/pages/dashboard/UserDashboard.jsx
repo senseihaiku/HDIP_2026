@@ -21,13 +21,19 @@ function formatDate(dateStr) {
 
 export default function UserDashboard() {
   const { currentUser } = useAuth();
-  const { datasets, accessRequests } = useData();
+  const { datasets, accessRequests, bookmarks, isBookmarked } = useData();
 
   // Requests made by the current user
   const myRequests = useMemo(
     () =>
       accessRequests.filter((req) => req.requesterId === currentUser?.id),
     [accessRequests, currentUser]
+  );
+
+  // Datasets the user has bookmarked
+  const bookmarkedDatasets = useMemo(
+    () => datasets.filter((ds) => bookmarks.includes(ds.id)),
+    [datasets, bookmarks]
   );
 
   // Resolve dataset info by id
@@ -139,6 +145,55 @@ export default function UserDashboard() {
                 </tbody>
               </table>
             </div>
+          </div>
+        )}
+      </section>
+
+      {/* ── Bookmarked Datasets ─────────────────────────────────────── */}
+      <section className="mb-10">
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-xl font-bold text-gray-900">
+            Bookmarked Datasets
+          </h2>
+          <Link
+            to="/catalog"
+            className="text-sm font-medium text-teal-600 hover:text-teal-700"
+          >
+            Browse catalog
+          </Link>
+        </div>
+
+        {bookmarkedDatasets.length === 0 ? (
+          <div className="bg-white border border-gray-200 rounded-lg shadow-sm px-6 py-12 text-center">
+            <svg
+              className="mx-auto h-12 w-12 text-gray-300 mb-3"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z"
+              />
+            </svg>
+            <p className="text-gray-500 text-sm">
+              No bookmarked datasets yet.
+            </p>
+            <Link
+              to="/catalog"
+              className="mt-2 inline-block text-sm font-medium text-teal-600 hover:text-teal-700"
+            >
+              Browse the catalog and bookmark datasets you're interested in
+            </Link>
+          </div>
+        ) : (
+          <div className="grid gap-4 sm:grid-cols-2">
+            {bookmarkedDatasets.map((ds) => (
+              <DatasetCard key={ds.id} dataset={ds} />
+            ))}
           </div>
         )}
       </section>

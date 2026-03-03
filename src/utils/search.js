@@ -7,12 +7,14 @@ export function searchDatasets(datasets, query = '', filters = {}) {
       const title = ds.title?.toLowerCase() || '';
       const description = ds.description?.toLowerCase() || '';
       const category = ds.category?.toLowerCase() || '';
+      const domain = ds.domain?.toLowerCase() || '';
       const holderName = ds.holder?.name?.toLowerCase() || '';
       const tags = ds.tags || [];
       return (
         title.includes(q) ||
         description.includes(q) ||
         category.includes(q) ||
+        domain.includes(q) ||
         holderName.includes(q) ||
         tags.some((t) => t.toLowerCase().includes(q))
       );
@@ -21,6 +23,18 @@ export function searchDatasets(datasets, query = '', filters = {}) {
 
   if (filters.category) {
     results = results.filter((ds) => ds.category === filters.category);
+  }
+
+  if (filters.domain) {
+    results = results.filter((ds) => ds.domain === filters.domain);
+  }
+
+  if (filters.dataStandard) {
+    results = results.filter((ds) => ds.dataStandards?.includes(filters.dataStandard));
+  }
+
+  if (filters.holderId) {
+    results = results.filter((ds) => ds.holder?.id === filters.holderId);
   }
 
   if (filters.holder) {

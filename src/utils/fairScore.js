@@ -20,13 +20,13 @@ export function calculateFairScore(dataset) {
   if (dataset.columns && dataset.columns.length >= 5) score.interoperable++;
   if (dataset.category) score.interoperable++;
   if (dataset.tags && dataset.tags.length >= 2) score.interoperable++;
-  if (dataset.recordCount) score.interoperable++;
+  if (dataset.dataStandards?.length > 0) score.interoperable++;
 
   // Reusable: documentation quality
   if (dataset.description && dataset.description.length > 100) score.reusable++;
   if (dataset.dateRange && dataset.dateRange.from && dataset.dateRange.to) score.reusable++;
   if (dataset.tags && dataset.tags.length >= 3) score.reusable++;
-  if (dataset.recordCount > 1000) score.reusable++;
+  if (dataset.license) score.reusable++;
   if (dataset.columns && dataset.columns.length >= 4) score.reusable++;
 
   score.total = score.findable + score.accessible + score.interoperable + score.reusable;

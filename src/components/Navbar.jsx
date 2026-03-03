@@ -30,9 +30,11 @@ export default function Navbar() {
 
   const navLinks = [
     { to: '/catalog', label: 'Catalog' },
+    { to: '/providers', label: 'Providers' },
     { to: '/pricing', label: 'Pricing' },
     { to: '/about', label: 'About' },
     { to: '/access-models', label: 'Access Models' },
+    { to: '/documentation', label: 'Documentation' },
   ];
 
   const authedLinks = isAuthenticated

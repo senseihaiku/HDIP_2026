@@ -22,6 +22,12 @@ const ACCESS_MODEL_INFO = {
   },
 };
 
+const ACCESS_MODEL_STYLES = {
+  'a2d': { label: 'Algorithm to Data (A2D)', short: 'A2D', bg: 'bg-green-50', text: 'text-green-700', border: 'border-green-200', borderLeft: 'border-l-green-400' },
+  'data-behind-glass': { label: 'Data Behind Glass', short: 'Data Behind Glass', bg: 'bg-blue-50', text: 'text-blue-700', border: 'border-blue-200', borderLeft: 'border-l-blue-400' },
+  'metadata-light': { label: 'Metadata Light', short: 'Metadata Light', bg: 'bg-amber-50', text: 'text-amber-700', border: 'border-amber-200', borderLeft: 'border-l-amber-400' },
+};
+
 const FAIR_DIMENSIONS = [
   { key: 'findable', label: 'Findable', color: 'bg-teal-500' },
   { key: 'accessible', label: 'Accessible', color: 'bg-sky-500' },
@@ -498,6 +504,36 @@ export default function DatasetDetail() {
                     : 'Private Organisation'}
                 </dd>
               </div>
+              {dataset.domain && (
+                <div>
+                  <dt className="text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Domain
+                  </dt>
+                  <dd className="mt-1 text-lg font-semibold text-gray-900">
+                    {formatCategory(dataset.domain)}
+                  </dd>
+                </div>
+              )}
+              {dataset.geographicCoverage && (
+                <div>
+                  <dt className="text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Geographic Coverage
+                  </dt>
+                  <dd className="mt-1 text-lg font-semibold text-gray-900">
+                    {dataset.geographicCoverage}
+                  </dd>
+                </div>
+              )}
+              {dataset.license && (
+                <div>
+                  <dt className="text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    License
+                  </dt>
+                  <dd className="mt-1 text-lg font-semibold text-gray-900">
+                    {dataset.license}
+                  </dd>
+                </div>
+              )}
             </dl>
           </section>
 
@@ -538,6 +574,22 @@ export default function DatasetDetail() {
             </div>
           </section>
 
+          {/* Data Standards */}
+          {dataset.dataStandards?.length > 0 && (
+            <section className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+              <h2 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-3">
+                Data Standards
+              </h2>
+              <div className="flex flex-wrap gap-2">
+                {dataset.dataStandards.map((std) => (
+                  <span key={std} className="inline-flex items-center rounded-full bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-600/20">
+                    {std}
+                  </span>
+                ))}
+              </div>
+            </section>
+          )}
+
           {/* Access Models */}
           <section className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
             <h2 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-4">
@@ -546,10 +598,11 @@ export default function DatasetDetail() {
             <div className="space-y-4">
               {dataset.accessModels.map((model) => {
                 const info = ACCESS_MODEL_INFO[model];
+                const style = ACCESS_MODEL_STYLES[model] || {};
                 return (
                   <div
                     key={model}
-                    className="flex items-start gap-3 rounded-lg border border-gray-100 bg-gray-50 p-4"
+                    className={`flex items-start gap-3 rounded-lg border border-gray-100 bg-gray-50 p-4 border-l-4 ${style.borderLeft || 'border-l-gray-300'}`}
                   >
                     <div className="shrink-0 mt-0.5">
                       <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-teal-100">
@@ -689,6 +742,37 @@ export default function DatasetDetail() {
               </div>
             </dl>
           </div>
+
+          {/* Contact Data Holder Card */}
+          {(dataset.holder.contactEmail || dataset.holder.contactPhone) && (
+            <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+              <h2 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-4">
+                Contact Data Holder
+              </h2>
+              <dl className="space-y-3">
+                {dataset.holder.contactEmail && (
+                  <div>
+                    <dt className="text-xs font-medium text-gray-500 uppercase tracking-wider">Email</dt>
+                    <dd className="mt-1">
+                      <a href={`mailto:${dataset.holder.contactEmail}`} className="text-sm text-teal-600 hover:text-teal-700 font-medium">
+                        {dataset.holder.contactEmail}
+                      </a>
+                    </dd>
+                  </div>
+                )}
+                {dataset.holder.contactPhone && (
+                  <div>
+                    <dt className="text-xs font-medium text-gray-500 uppercase tracking-wider">Phone</dt>
+                    <dd className="mt-1">
+                      <a href={`tel:${dataset.holder.contactPhone}`} className="text-sm text-gray-700 font-medium">
+                        {dataset.holder.contactPhone}
+                      </a>
+                    </dd>
+                  </div>
+                )}
+              </dl>
+            </div>
+          )}
         </div>
       </div>
 

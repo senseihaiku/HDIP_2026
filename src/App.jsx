@@ -13,7 +13,7 @@ import DatasetDetail from './pages/DatasetDetail';
 import Pricing from './pages/Pricing';
 import About from './pages/About';
 import AccessModels from './pages/AccessModels';
-import Documentation from './pages/Documentation';
+import HDIPWiki from './pages/HDIPWiki';
 import Providers from './pages/Providers';
 import ProviderDetail from './pages/ProviderDetail';
 import HolderDashboard from './pages/dashboard/HolderDashboard';
@@ -44,7 +44,7 @@ export default function App() {
               <Route path="/pricing" element={<Pricing />} />
               <Route path="/about" element={<About />} />
               <Route path="/access-models" element={<AccessModels />} />
-              <Route path="/documentation" element={<Documentation />} />
+              <Route path="/documentation" element={<HDIPWiki />} />
               <Route path="/providers" element={<Providers />} />
               <Route path="/providers/:id" element={<ProviderDetail />} />
 

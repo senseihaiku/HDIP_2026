@@ -4,18 +4,13 @@ const MAX_PER_DIMENSION = 5;
 const MAX_TOTAL = 20;
 
 function getScoreColor(total) {
-  if (total >= 16) return { bg: 'bg-green-100', text: 'text-green-700', border: 'border-green-300', bar: 'bg-green-500' };
-  if (total >= 12) return { bg: 'bg-blue-100', text: 'text-blue-700', border: 'border-blue-300', bar: 'bg-blue-500' };
-  if (total >= 8)  return { bg: 'bg-yellow-100', text: 'text-yellow-700', border: 'border-yellow-300', bar: 'bg-yellow-500' };
+  if (total >= 16) return { bg: 'bg-emerald-100', text: 'text-emerald-700', border: 'border-emerald-300', bar: 'bg-emerald-500' };
+  if (total >= 12) return { bg: 'bg-teal-200', text: 'text-teal-800', border: 'border-teal-400', bar: 'bg-teal-500' };
+  if (total >= 8)  return { bg: 'bg-teal-100', text: 'text-teal-700', border: 'border-teal-300', bar: 'bg-teal-400' };
   return { bg: 'bg-red-100', text: 'text-red-700', border: 'border-red-300', bar: 'bg-red-500' };
 }
 
-function getDimensionColor(value) {
-  if (value >= 4) return 'bg-green-500';
-  if (value >= 3) return 'bg-blue-500';
-  if (value >= 2) return 'bg-yellow-500';
-  return 'bg-red-500';
-}
+const DIMENSION_COLORS = ['bg-teal-500', 'bg-teal-400', 'bg-teal-600', 'bg-teal-800'];
 
 export default function FairBadge({ score, detailed = false }) {
   if (!score) return null;
@@ -51,7 +46,7 @@ export default function FairBadge({ score, detailed = false }) {
               </span>
               <div className="flex-1 h-2 bg-white/60 rounded-full overflow-hidden">
                 <div
-                  className={`h-full rounded-full ${getDimensionColor(value)}`}
+                  className={`h-full rounded-full ${DIMENSION_COLORS[i]}`}
                   style={{ width: `${pct}%` }}
                 />
               </div>

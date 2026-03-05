@@ -41,8 +41,8 @@ export function getFairLabel(total) {
 }
 
 export function getFairColor(total) {
-  if (total >= 16) return 'text-green-600';
-  if (total >= 12) return 'text-blue-600';
-  if (total >= 8) return 'text-yellow-600';
+  if (total >= 16) return 'text-emerald-600';
+  if (total >= 12) return 'text-teal-700';
+  if (total >= 8) return 'text-teal-600';
   return 'text-red-600';
 }

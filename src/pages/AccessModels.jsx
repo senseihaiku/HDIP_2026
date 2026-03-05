@@ -48,7 +48,7 @@ const models = [
       'You want to visually inspect data quality before committing to a pipeline.',
     ],
     security: 'High',
-    securityColor: 'bg-blue-100 text-blue-800 border-blue-200',
+    securityColor: 'bg-teal-200 text-teal-800 border-teal-300',
     icon: (
       <svg className="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -75,7 +75,7 @@ const models = [
       'You want to compare multiple datasets quickly.',
     ],
     security: 'Standard',
-    securityColor: 'bg-amber-100 text-amber-800 border-amber-200',
+    securityColor: 'bg-teal-100 text-teal-700 border-teal-200',
     icon: (
       <svg className="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />

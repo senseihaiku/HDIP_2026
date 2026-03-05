@@ -266,10 +266,10 @@ const NAV_ITEMS = [
 const StatusBadge = ({ status }) => {
   const colors = {
     Completed: "bg-emerald-100 text-emerald-800",
-    "In progress": "bg-blue-100 text-blue-800",
+    "In progress": "bg-teal-100 text-teal-800",
     "Not started": "bg-gray-100 text-gray-500",
-    Ongoing: "bg-violet-100 text-violet-800",
-    Pending: "bg-amber-100 text-amber-800",
+    Ongoing: "bg-teal-200 text-teal-900",
+    Pending: "bg-gray-200 text-gray-700",
   };
   return (
     <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${colors[status] || "bg-gray-100 text-gray-600"}`}>

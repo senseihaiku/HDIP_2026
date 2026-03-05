@@ -12,8 +12,8 @@ function formatDomain(slug) {
 
 function getFairBadgeClasses(score) {
   if (score >= 16) return 'bg-green-100 text-green-700 border-green-300';
-  if (score >= 12) return 'bg-blue-100 text-blue-700 border-blue-300';
-  if (score >= 8) return 'bg-yellow-100 text-yellow-700 border-yellow-300';
+  if (score >= 12) return 'bg-teal-200 text-teal-800 border-teal-400';
+  if (score >= 8) return 'bg-teal-100 text-teal-700 border-teal-300';
   return 'bg-red-100 text-red-700 border-red-300';
 }
 
@@ -63,7 +63,7 @@ export default function Providers() {
           const typeBadgeClass =
             provider.type === 'public'
               ? 'bg-sky-50 text-sky-700 ring-sky-600/20'
-              : 'bg-amber-50 text-amber-700 ring-amber-600/20';
+              : 'bg-teal-50 text-teal-700 ring-teal-600/20';
 
           return (
             <Link

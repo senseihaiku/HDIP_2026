@@ -24,15 +24,15 @@ const ACCESS_MODEL_INFO = {
 
 const ACCESS_MODEL_STYLES = {
   'a2d': { label: 'Algorithm to Data (A2D)', short: 'A2D', bg: 'bg-green-50', text: 'text-green-700', border: 'border-green-200', borderLeft: 'border-l-green-400' },
-  'data-behind-glass': { label: 'Data Behind Glass', short: 'Data Behind Glass', bg: 'bg-blue-50', text: 'text-blue-700', border: 'border-blue-200', borderLeft: 'border-l-blue-400' },
-  'metadata-light': { label: 'Metadata Light', short: 'Metadata Light', bg: 'bg-amber-50', text: 'text-amber-700', border: 'border-amber-200', borderLeft: 'border-l-amber-400' },
+  'data-behind-glass': { label: 'Data Behind Glass', short: 'Data Behind Glass', bg: 'bg-teal-100', text: 'text-teal-800', border: 'border-teal-300', borderLeft: 'border-l-teal-400' },
+  'metadata-light': { label: 'Metadata Light', short: 'Metadata Light', bg: 'bg-teal-50', text: 'text-teal-600', border: 'border-teal-200', borderLeft: 'border-l-teal-300' },
 };
 
 const FAIR_DIMENSIONS = [
   { key: 'findable', label: 'Findable', color: 'bg-teal-500' },
-  { key: 'accessible', label: 'Accessible', color: 'bg-sky-500' },
-  { key: 'interoperable', label: 'Interoperable', color: 'bg-violet-500' },
-  { key: 'reusable', label: 'Reusable', color: 'bg-amber-500' },
+  { key: 'accessible', label: 'Accessible', color: 'bg-teal-400' },
+  { key: 'interoperable', label: 'Interoperable', color: 'bg-teal-600' },
+  { key: 'reusable', label: 'Reusable', color: 'bg-teal-800' },
 ];
 
 function formatCategory(cat) {
@@ -338,7 +338,7 @@ export default function DatasetDetail() {
   const orgTypeBadgeClass =
     dataset.holder.type === 'public'
       ? 'bg-sky-50 text-sky-700 ring-sky-600/20'
-      : 'bg-amber-50 text-amber-700 ring-amber-600/20';
+      : 'bg-teal-50 text-teal-700 ring-teal-600/20';
 
   const handleRequestSubmit = async ({ accessModel, purpose }) => {
     await createRequest({
@@ -511,7 +511,7 @@ export default function DatasetDetail() {
                     className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold ${
                       dataset.status === 'published'
                         ? 'bg-green-50 text-green-700 ring-1 ring-inset ring-green-600/20'
-                        : 'bg-yellow-50 text-yellow-700 ring-1 ring-inset ring-yellow-600/20'
+                        : 'bg-gray-100 text-gray-700 ring-1 ring-inset ring-gray-600/20'
                     }`}
                   >
                     {dataset.status.charAt(0).toUpperCase() +
@@ -615,7 +615,7 @@ export default function DatasetDetail() {
               </h2>
               <div className="flex flex-wrap gap-2">
                 {dataset.dataStandards.map((std) => (
-                  <span key={std} className="inline-flex items-center rounded-full bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-600/20">
+                  <span key={std} className="inline-flex items-center rounded-full bg-teal-50 px-3 py-1 text-xs font-medium text-teal-700 ring-1 ring-inset ring-teal-600/20">
                     {std}
                   </span>
                 ))}

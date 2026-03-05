@@ -269,7 +269,7 @@ function FairBarChart({ fairScore }) {
 /* ===== Main DatasetDetail Component ===== */
 export default function DatasetDetail() {
   const { id } = useParams();
-  const { getDataset, createRequest } = useData();
+  const { getDataset, createRequest, toggleBookmark, isBookmarked } = useData();
   const { currentUser, isAuthenticated } = useAuth();
   const [showRequestModal, setShowRequestModal] = useState(false);
 
@@ -330,6 +330,10 @@ export default function DatasetDetail() {
 
   const isDataUser =
     isAuthenticated && currentUser?.role === 'data-user';
+  const canBookmark =
+    isAuthenticated &&
+    (currentUser?.role === 'data-user' || currentUser?.role === 'admin');
+  const bookmarked = canBookmark && isBookmarked(dataset.id);
 
   const orgTypeBadgeClass =
     dataset.holder.type === 'public'
@@ -392,36 +396,65 @@ export default function DatasetDetail() {
           </div>
 
           {/* Request Access button */}
-          {!isAuthenticated && (
-            <Link
-              to="/login"
-              className="shrink-0 inline-flex items-center gap-2 rounded-lg border border-teal-600 px-5 py-2.5 text-sm font-semibold text-teal-700 hover:bg-teal-50 transition-colors"
-            >
-              Log in to request access
-            </Link>
-          )}
-          {isDataUser && (
-            <button
-              onClick={() => setShowRequestModal(true)}
-              className="shrink-0 inline-flex items-center gap-2 rounded-lg bg-teal-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-teal-700 transition-colors"
-            >
-              <svg
-                className="h-4 w-4"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={2}
-                stroke="currentColor"
+          <div className="flex items-center gap-3 shrink-0">
+            {canBookmark && (
+              <button
+                onClick={() => toggleBookmark(dataset.id)}
+                className={`inline-flex items-center gap-1.5 rounded-lg border px-3 py-2.5 text-sm font-medium transition-colors ${
+                  bookmarked
+                    ? 'border-teal-200 bg-teal-50 text-teal-600 hover:bg-teal-100'
+                    : 'border-gray-300 text-gray-400 hover:text-teal-600 hover:border-teal-300'
+                }`}
+                title={bookmarked ? 'Remove bookmark' : 'Bookmark this dataset'}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"
-                />
-              </svg>
-              Request Access
-            </button>
-          )}
+                <svg
+                  className="h-5 w-5"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill={bookmarked ? 'currentColor' : 'none'}
+                  stroke="currentColor"
+                  strokeWidth={bookmarked ? 0 : 1.5}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z"
+                  />
+                </svg>
+                {bookmarked ? 'Bookmarked' : 'Bookmark'}
+              </button>
+            )}
+            {!isAuthenticated && (
+              <Link
+                to="/login"
+                className="inline-flex items-center gap-2 rounded-lg border border-teal-600 px-5 py-2.5 text-sm font-semibold text-teal-700 hover:bg-teal-50 transition-colors"
+              >
+                Log in to request access
+              </Link>
+            )}
+            {isDataUser && (
+              <button
+                onClick={() => setShowRequestModal(true)}
+                className="inline-flex items-center gap-2 rounded-lg bg-teal-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-teal-700 transition-colors"
+              >
+                <svg
+                  className="h-4 w-4"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={2}
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"
+                  />
+                </svg>
+                Request Access
+              </button>
+            )}
+          </div>
         </div>
       </div>
 

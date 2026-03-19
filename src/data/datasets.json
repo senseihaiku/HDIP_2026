@@ -16,7 +16,32 @@
     "geographicCoverage": "Vastra Gotalandsregionen",
     "fairScore": { "findable": 4, "accessible": 3, "interoperable": 3, "reusable": 2, "total": 12 },
     "createdAt": "2025-06-15",
-    "status": "published"
+    "status": "published",
+    "dataTypes": ["Clinical/Journal"],
+    "fileFormats": ["CSV", "Parquet"],
+    "sensitivityLevel": "Pseudonymized",
+    "dataSize": "1.2 GB",
+    "updateFrequency": "Quarterly",
+    "methodology": "Data extracted from regional electronic health record systems (Melior/Millennium) via automated ETL pipelines. Patient identifiers replaced with cryptographic hashes. Diagnosis codes mapped to ICD-10-SE. Quality checks include admission-discharge date validation, duplicate record removal, and department code standardization.",
+    "limitations": "Excludes primary care visits and private outpatient clinics. Emergency department visits without subsequent admission are only partially captured before 2021. Some smaller clinics migrated EHR systems during the study period, causing a 3-month data gap for approximately 5% of departments.",
+    "cohort": {
+      "ageRange": "0-99",
+      "sexDistribution": { "male": 48, "female": 52 },
+      "geographicArea": "Vastra Gotalandsregionen",
+      "sampleSize": 245000,
+      "description": "All patients admitted to regional hospitals in VGR between 2019-2023, covering emergency, elective, and day-case admissions across all clinical departments. Includes pediatric and geriatric populations."
+    },
+    "useCases": [
+      { "title": "Resource Optimization", "description": "Analyze admission patterns and length of stay to optimize bed allocation and staffing across departments." },
+      { "title": "Bottleneck Identification", "description": "Identify patient flow bottlenecks between emergency departments and inpatient wards to reduce waiting times." }
+    ],
+    "publications": [
+      { "title": "Patient Flow Dynamics in Swedish Regional Hospitals: A Five-Year Analysis", "authors": "Svensson K, Andersson L, Johansson M", "journal": "Scandinavian Journal of Public Health", "year": 2024, "doi": "10.1177/14034948241234567", "url": "https://doi.org/10.1177/14034948241234567" }
+    ],
+    "faq": [
+      { "question": "Are individual patient records identifiable?", "answer": "No. All patient identifiers have been replaced with cryptographic hashes. The dataset cannot be linked back to individual patients without access to the original key, which is held securely by VGR's data protection office." },
+      { "question": "Can this data be linked with other registries?", "answer": "Linkage is possible through a formal application to VGR's data access committee. A trusted third party performs the linkage using encrypted identifiers." }
+    ]
   },
   {
     "id": "ds-002",
@@ -35,7 +60,34 @@
     "geographicCoverage": "National (Sweden)",
     "fairScore": { "findable": 5, "accessible": 4, "interoperable": 4, "reusable": 4, "total": 17 },
     "createdAt": "2025-04-22",
-    "status": "published"
+    "status": "published",
+    "dataTypes": ["Genomics/Bioinformatics", "Clinical/Journal"],
+    "fileFormats": ["VCF", "BAM/CRAM", "CSV"],
+    "sensitivityLevel": "Special Category",
+    "dataSize": "850 GB",
+    "updateFrequency": "Annual",
+    "methodology": "Whole-genome sequencing performed on Illumina NovaSeq 6000 at 30x average coverage. Variants called using GATK HaplotypeCaller following best-practices pipeline (BWA-MEM2 alignment, BQSR, VQSR). Clinical phenotypes captured using Human Phenotype Ontology (HPO) terms by clinical geneticists. Pathogenicity assessed using ACMG/AMP guidelines.",
+    "limitations": "Coverage variability exists between earlier (2017-2019) and later samples due to platform upgrades. Approximately 8% of samples have mean coverage below 25x. Phenotype data completeness varies by recruiting center, with some centers providing more granular HPO annotations than others.",
+    "cohort": {
+      "ageRange": "0-65",
+      "sexDistribution": { "male": 45, "female": 55 },
+      "geographicArea": "National (Sweden)",
+      "sampleSize": 1200,
+      "description": "Patients diagnosed with rare hereditary diseases, recruited through clinical genetics centers across Sweden. Includes linked phenotype data using HPO terms. Major disease groups: neurological (32%), metabolic (24%), skeletal (18%), immunological (14%), other (12%)."
+    },
+    "useCases": [
+      { "title": "Rare Variant Discovery", "description": "Identify novel pathogenic variants in known disease genes or discover new gene-disease associations through cohort-level analysis." },
+      { "title": "Phenotype-Genotype Correlation", "description": "Study correlations between clinical phenotype severity and specific variant types across the rare disease spectrum." }
+    ],
+    "publications": [
+      { "title": "Diagnostic Yield of Whole-Genome Sequencing in Swedish Rare Disease Patients", "authors": "Eriksson A, Lindqvist R, Nilsson P et al.", "journal": "European Journal of Human Genetics", "year": 2023, "doi": "10.1038/s41431-023-01234-5", "url": "https://doi.org/10.1038/s41431-023-01234-5" },
+      { "title": "Novel Variants in Neurological Rare Diseases: A Swedish WGS Cohort Study", "authors": "Lindqvist R, Eriksson A, Berg J", "journal": "Genetics in Medicine", "year": 2024, "doi": "10.1016/j.gim.2024.100987", "url": "https://doi.org/10.1016/j.gim.2024.100987" }
+    ],
+    "faq": [
+      { "question": "What genome build is used?", "answer": "All data is aligned to GRCh38 (hg38). Variant coordinates are reported in GRCh38." },
+      { "question": "Is trio sequencing included?", "answer": "Approximately 40% of cases include parental samples (trios). These are flagged in the metadata but stored as individual samples." },
+      { "question": "How is data accessed?", "answer": "Data is only accessible within a Glass Sandbox environment at Karolinska. No data download is permitted. Researchers bring their analysis scripts to the secure environment." }
+    ]
   },
   {
     "id": "ds-003",
@@ -54,7 +106,32 @@
     "geographicCoverage": "Multi-site (Sweden, UK, Germany)",
     "fairScore": { "findable": 3, "accessible": 2, "interoperable": 3, "reusable": 2, "total": 10 },
     "createdAt": "2025-08-10",
-    "status": "published"
+    "status": "published",
+    "dataTypes": ["Clinical/Journal"],
+    "fileFormats": ["CSV", "JSON", "PDF"],
+    "sensitivityLevel": "Aggregated",
+    "dataSize": "340 MB",
+    "updateFrequency": "One-time",
+    "methodology": "Multi-center, double-blind, randomized controlled trial conducted across 45 sites in Sweden, UK, and Germany. Patients randomized 1:1 to novel anticoagulant vs standard of care. Primary endpoint: composite of stroke, systemic embolism, and cardiovascular death. Data monitored by independent DSMB. Statistical analysis per pre-registered SAP.",
+    "limitations": "Aggregated-level data only — individual patient data requires separate agreement. Trial population may not fully represent real-world patient demographics due to strict inclusion/exclusion criteria. Follow-up limited to 3.5 years.",
+    "cohort": {
+      "ageRange": "45-85",
+      "sexDistribution": { "male": 58, "female": 42 },
+      "geographicArea": "Sweden, UK, Germany",
+      "sampleSize": 18500,
+      "description": "Patients with non-valvular atrial fibrillation at moderate-to-high stroke risk (CHA2DS2-VASc score >= 2). Exclusion criteria included severe renal impairment, active bleeding, and recent surgery."
+    },
+    "useCases": [
+      { "title": "Comparative Effectiveness Research", "description": "Compare trial outcomes against real-world evidence from national registries to assess generalizability." },
+      { "title": "Subgroup Meta-Analysis", "description": "Combine with other trial datasets for subgroup analyses (e.g., age-stratified or sex-stratified outcomes)." }
+    ],
+    "publications": [
+      { "title": "Efficacy and Safety of Novel Anticoagulant in Non-Valvular AF: Phase III Results", "authors": "AstraZeneca Clinical Study Team", "journal": "The Lancet", "year": 2023, "doi": "10.1016/S0140-6736(23)01234-5", "url": "https://doi.org/10.1016/S0140-6736(23)01234-5" }
+    ],
+    "faq": [
+      { "question": "Is individual patient data available?", "answer": "Individual patient-level data may be available through a separate data sharing agreement with AstraZeneca. Contact dataaccess@astrazeneca.com for details." },
+      { "question": "What analysis tools are supported?", "answer": "Data is provided in CSV and JSON formats compatible with R, Python, SAS, and STATA." }
+    ]
   },
   {
     "id": "ds-004",
@@ -73,7 +150,36 @@
     "geographicCoverage": "Region Stockholm",
     "fairScore": { "findable": 5, "accessible": 4, "interoperable": 5, "reusable": 4, "total": 18 },
     "createdAt": "2025-03-01",
-    "status": "published"
+    "status": "published",
+    "dataTypes": ["Clinical/Journal", "Physiological"],
+    "fileFormats": ["CSV", "JSON", "FHIR/JSON", "Parquet"],
+    "sensitivityLevel": "Pseudonymized",
+    "dataSize": "2.8 GB",
+    "updateFrequency": "One-time",
+    "methodology": "Cases identified through mandatory reporting to the Swedish Public Health Agency (Folkhälsomyndigheten). PCR-confirmed cases linked with vaccination registry, hospital admission data, and ICU registry. Variant classification based on whole-genome sequencing of representative samples per surveillance protocol. Municipality-level geographic coding applied.",
+    "limitations": "Testing policies changed significantly across pandemic waves, affecting case ascertainment. Rapid antigen test results are underrepresented (not mandatory reporting). Vaccination data may be incomplete for individuals vaccinated abroad. Variant classification covers approximately 15% of all confirmed cases.",
+    "cohort": {
+      "ageRange": "0-105",
+      "sexDistribution": { "male": 49, "female": 51 },
+      "geographicArea": "Region Stockholm",
+      "sampleSize": 890000,
+      "description": "All confirmed COVID-19 cases reported through the mandatory surveillance system in Region Stockholm across four pandemic waves (2020-2023). Population-level coverage with linked vaccination and hospitalization data."
+    },
+    "useCases": [
+      { "title": "Vaccination Effectiveness Studies", "description": "Evaluate vaccine effectiveness against infection, hospitalization, and ICU admission across different variants and age groups." },
+      { "title": "Variant Epidemiology", "description": "Analyze the spread and impact of different SARS-CoV-2 variants on disease severity and transmission dynamics." },
+      { "title": "Hospitalization Prediction Models", "description": "Develop machine learning models to predict hospitalization risk based on demographic factors, vaccination status, and variant type." }
+    ],
+    "publications": [
+      { "title": "COVID-19 Surveillance in Stockholm: Epidemiological Patterns Across Four Waves", "authors": "Bergman A, Lindgren S, Ohlsson T", "journal": "Eurosurveillance", "year": 2023, "doi": "10.2807/1560-7917.ES.2023.28.1.2200987", "url": "https://doi.org/10.2807/1560-7917.ES.2023.28.1.2200987" },
+      { "title": "Vaccine Effectiveness Against Omicron Hospitalization in Stockholm", "authors": "Lindgren S, Bergman A, Falk K et al.", "journal": "The Lancet Regional Health - Europe", "year": 2023, "doi": "10.1016/j.lanepe.2023.100654", "url": "https://doi.org/10.1016/j.lanepe.2023.100654" },
+      { "title": "Impact of Variant Emergence on ICU Admissions: A Registry-Based Analysis", "authors": "Ohlsson T, Bergman A", "journal": "Intensive Care Medicine", "year": 2024, "doi": "10.1007/s00134-024-07123-4", "url": "https://doi.org/10.1007/s00134-024-07123-4" }
+    ],
+    "faq": [
+      { "question": "How are pandemic waves defined?", "answer": "Wave 1: Feb-Aug 2020 (wild type), Wave 2: Sep 2020-May 2021 (Alpha), Wave 3: Jun-Dec 2021 (Delta), Wave 4: Jan-Sep 2023 (Omicron and subvariants)." },
+      { "question": "Is reinfection data included?", "answer": "Yes, individuals can appear multiple times if they had confirmed reinfections. Each episode is a separate record linked by a pseudonymized patient identifier." },
+      { "question": "Can the data be exported?", "answer": "The dataset is available under CC BY 4.0. Aggregated exports are freely available. Record-level data requires a formal access application." }
+    ]
   },
   {
     "id": "ds-005",
@@ -92,7 +198,32 @@
     "geographicCoverage": "Vastra Gotalandsregionen",
     "fairScore": { "findable": 4, "accessible": 4, "interoperable": 4, "reusable": 3, "total": 15 },
     "createdAt": "2025-05-18",
-    "status": "published"
+    "status": "published",
+    "dataTypes": ["Clinical/Journal", "Physiological"],
+    "fileFormats": ["CSV", "Excel"],
+    "sensitivityLevel": "Pseudonymized",
+    "dataSize": "180 MB",
+    "updateFrequency": "Annual",
+    "methodology": "Prospective registration of all acute stroke admissions at Sahlgrenska University Hospital, part of the Swedish National Stroke Registry (Riksstroke). NIHSS scoring performed by certified stroke nurses at admission and discharge. 90-day follow-up via structured telephone interview. Stroke type confirmed by neuroimaging (CT/MRI) reviewed by neuroradiologist.",
+    "limitations": "Registry covers only Sahlgrenska University Hospital, not the full VGR region. Patients who died before hospital admission are not captured. 90-day follow-up completion rate is approximately 88%. NIHSS at admission may be missing for patients who arrived outside regular hours before 2018.",
+    "cohort": {
+      "ageRange": "18-102",
+      "sexDistribution": { "male": 53, "female": 47 },
+      "geographicArea": "Vastra Gotalandsregionen",
+      "sampleSize": 34200,
+      "description": "All acute stroke admissions (ischemic 82%, hemorrhagic 15%, other 3%) at Sahlgrenska University Hospital 2015-2024. Median age 74 years. Includes treatment details, neurological severity scores, and functional outcomes at 90 days."
+    },
+    "useCases": [
+      { "title": "Treatment Quality Benchmarking", "description": "Compare door-to-needle times and reperfusion rates against national and international benchmarks." },
+      { "title": "Outcome Prediction Modeling", "description": "Develop predictive models for 90-day functional outcome (mRS) based on admission characteristics and treatment variables." }
+    ],
+    "publications": [
+      { "title": "Ten Years of Stroke Care at Sahlgrenska: Trends in Treatment and Outcomes", "authors": "Nordberg M, Eriksson C, Petersson A", "journal": "Stroke", "year": 2025, "doi": "10.1161/STROKEAHA.125.045678", "url": "https://doi.org/10.1161/STROKEAHA.125.045678" }
+    ],
+    "faq": [
+      { "question": "What stroke types are included?", "answer": "Ischemic stroke (82%), intracerebral hemorrhage (15%), and subarachnoid hemorrhage/other (3%). TIA cases are not included." },
+      { "question": "Is this connected to Riksstroke?", "answer": "Yes, this is the Sahlgrenska subset of the Swedish National Stroke Registry (Riksstroke) with additional local variables not captured nationally." }
+    ]
   },
   {
     "id": "ds-006",
@@ -111,7 +242,32 @@
     "geographicCoverage": "National (Sweden)",
     "fairScore": { "findable": 4, "accessible": 3, "interoperable": 2, "reusable": 3, "total": 12 },
     "createdAt": "2025-07-02",
-    "status": "published"
+    "status": "published",
+    "dataTypes": ["Imaging", "Clinical/Journal"],
+    "fileFormats": ["DICOM", "CSV", "JSON"],
+    "sensitivityLevel": "Anonymized",
+    "dataSize": "45 GB",
+    "updateFrequency": "One-time",
+    "methodology": "Chest X-ray images collected from five Swedish hospitals, de-identified using DICOM anonymization tools (removing patient name, ID, dates). Two board-certified radiologists independently annotated each image for 14 pathology classes. Disagreements resolved by a third senior radiologist. Bounding box annotations for localization tasks created using LabelImg tool.",
+    "limitations": "Dataset skewed toward PA (posteroanterior) views (85%). Lateral views underrepresented. Age distribution skewed toward elderly patients (median 65 years). Some pathology classes have fewer than 500 examples. Original DICOM metadata beyond demographics has been stripped for anonymization.",
+    "cohort": {
+      "ageRange": "18-97",
+      "sexDistribution": { "male": 55, "female": 45 },
+      "geographicArea": "National (Sweden)",
+      "sampleSize": 52000,
+      "description": "Chest X-ray images from patients across five Swedish hospitals. 14 pathology classes annotated including cardiomegaly, pneumonia, effusion, atelectasis, pneumothorax, consolidation, edema, emphysema, fibrosis, hernia, mass, nodule, pleural thickening, and no finding."
+    },
+    "useCases": [
+      { "title": "Automated Screening Algorithm Development", "description": "Train deep learning models for automated chest X-ray screening in emergency and primary care settings." },
+      { "title": "Multi-Label Classification Research", "description": "Develop and benchmark multi-label classification approaches for overlapping chest pathologies." }
+    ],
+    "publications": [
+      { "title": "A Swedish Annotated Chest X-ray Dataset for AI Model Development", "authors": "Lindblom T, Hasselgren G, Ahlstrom H", "journal": "Scientific Data", "year": 2023, "doi": "10.1038/s41597-023-02345-6", "url": "https://doi.org/10.1038/s41597-023-02345-6" }
+    ],
+    "faq": [
+      { "question": "Are the images in DICOM or standard image format?", "answer": "Both. Original DICOM files are preserved for full metadata access. PNG exports at 1024x1024 resolution are also available with annotation CSV files for easier ML pipeline integration." },
+      { "question": "Can models trained on this data be deployed commercially?", "answer": "The CC BY-NC 4.0 license restricts commercial use. Contact the data holder to discuss commercial licensing options." }
+    ]
   },
   {
     "id": "ds-007",
@@ -130,7 +286,32 @@
     "geographicCoverage": "Vastra Gotalandsregionen",
     "fairScore": { "findable": 3, "accessible": 2, "interoperable": 3, "reusable": 2, "total": 10 },
     "createdAt": "2025-09-12",
-    "status": "published"
+    "status": "published",
+    "dataTypes": ["Biobank/Samples", "Clinical/Journal", "Physiological"],
+    "fileFormats": ["CSV", "HDF5", "Excel"],
+    "sensitivityLevel": "Special Category",
+    "dataSize": "3.2 GB",
+    "updateFrequency": "Annual",
+    "methodology": "Plasma samples collected from participants in the Gothenburg Population Study at baseline and 5-year follow-up. Untargeted metabolomics performed using LC-MS/MS (Thermo Q Exactive) with quality control samples interspersed. Data processed using MZmine and normalized using probabilistic quotient normalization. Lifestyle data from validated questionnaires. Follow-up diagnoses from the Swedish National Patient Registry.",
+    "limitations": "Metabolomics measurements have inherent batch effects despite normalization efforts. Missing lifestyle data for approximately 12% of participants. Follow-up diagnoses limited to hospital-based care (outpatient and inpatient) — primary care diagnoses not linked. Biobank sample degradation may affect some metabolite measurements in earliest samples.",
+    "cohort": {
+      "ageRange": "30-75",
+      "sexDistribution": { "male": 46, "female": 54 },
+      "geographicArea": "Gothenburg metropolitan area",
+      "sampleSize": 8700,
+      "description": "Population-based cohort from the Gothenburg Population Study. Participants recruited randomly from the population registry. Includes baseline metabolomics, lifestyle questionnaire data (diet, physical activity, smoking, alcohol), BMI, blood pressure, and 10-year follow-up health outcomes including cardiovascular events, diabetes onset, and cancer diagnoses."
+    },
+    "useCases": [
+      { "title": "Metabolomic Biomarker Discovery", "description": "Identify metabolite signatures predictive of cardiovascular disease, type 2 diabetes, or cancer development." },
+      { "title": "Lifestyle-Metabolism Interaction Studies", "description": "Investigate how lifestyle factors (diet, exercise, smoking) modify metabolomic profiles and disease risk." }
+    ],
+    "publications": [
+      { "title": "Plasma Metabolomics and 10-Year Cardiovascular Risk in a Swedish Population Cohort", "authors": "Olsson B, Karlsson J, Svensson E", "journal": "Metabolomics", "year": 2024, "doi": "10.1007/s11306-024-02156-7", "url": "https://doi.org/10.1007/s11306-024-02156-7" }
+    ],
+    "faq": [
+      { "question": "What metabolomics platform was used?", "answer": "Untargeted LC-MS/MS using a Thermo Q Exactive Plus. Both positive and negative ionization modes were used, covering approximately 2,500 annotated metabolites." },
+      { "question": "Are the biobank samples still available?", "answer": "Yes, remaining aliquots may be available for additional analyses. Contact the Gothenburg Biobank for sample availability and access procedures." }
+    ]
   },
   {
     "id": "ds-008",
@@ -149,7 +330,28 @@
     "geographicCoverage": "National (Sweden)",
     "fairScore": { "findable": 3, "accessible": 2, "interoperable": 2, "reusable": 1, "total": 8 },
     "createdAt": "2025-10-05",
-    "status": "draft"
+    "status": "draft",
+    "dataTypes": ["Physiological", "Clinical/Journal"],
+    "fileFormats": ["Parquet", "CSV"],
+    "sensitivityLevel": "Pseudonymized",
+    "dataSize": "28 GB",
+    "updateFrequency": "Ongoing",
+    "methodology": "Vital signs extracted from ICU bedside monitors (Philips IntelliVue) at 1-minute resolution. Data quality pipeline includes artifact removal, interpolation of short gaps (<5 min), and outlier flagging. Formatted as time-series partitioned by ICU stay. Designed for federated learning with standardized feature schema across participating sites.",
+    "limitations": "Data preparation is ongoing. Current version covers 3 of 5 planned ICU sites. Monitor brand differences introduce measurement variability. Artifact removal algorithm may inadvertently remove valid extreme values. No medication data linked yet.",
+    "cohort": {
+      "ageRange": "18-95",
+      "sexDistribution": { "male": 57, "female": 43 },
+      "geographicArea": "National (Sweden)",
+      "sampleSize": 12500,
+      "description": "Adult ICU patients (medical, surgical, and cardiac ICU) from three Swedish university hospitals. Average ICU stay 4.2 days. Major admission categories: post-surgical (35%), sepsis (22%), respiratory failure (18%), cardiac (15%), trauma (10%)."
+    },
+    "useCases": [
+      { "title": "Early Warning Score Development", "description": "Train federated ML models for early detection of clinical deterioration using multi-site vital sign patterns." }
+    ],
+    "publications": [],
+    "faq": [
+      { "question": "When will all five sites be included?", "answer": "The remaining two sites are expected to complete data preparation by Q2 2026. Draft status reflects the ongoing integration." }
+    ]
   },
   {
     "id": "ds-009",
@@ -168,7 +370,32 @@
     "geographicCoverage": "National (Sweden)",
     "fairScore": { "findable": 4, "accessible": 3, "interoperable": 4, "reusable": 3, "total": 14 },
     "createdAt": "2025-07-28",
-    "status": "published"
+    "status": "published",
+    "dataTypes": ["Clinical/Journal"],
+    "fileFormats": ["CSV", "JSON", "XML"],
+    "sensitivityLevel": "Anonymized",
+    "dataSize": "520 MB",
+    "updateFrequency": "Quarterly",
+    "methodology": "Adverse drug reaction reports collected through the Swedish spontaneous reporting system (SWEDIS) and supplemented with company-held safety data. Reports coded using MedDRA (version 26.1) for adverse events and WHO ATC classification for suspect drugs. Duplicate detection performed using probabilistic record matching. Seriousness assessed per ICH E2B criteria.",
+    "limitations": "Spontaneous reporting is subject to significant underreporting bias — estimated capture rate 5-10% of actual ADRs. Reporter qualification varies (healthcare professionals vs consumers). Causality not assessed in raw reports. Temporal trends influenced by media attention and regulatory actions.",
+    "cohort": {
+      "ageRange": "0-99",
+      "sexDistribution": { "male": 42, "female": 58 },
+      "geographicArea": "National (Sweden)",
+      "sampleSize": 162000,
+      "description": "All spontaneous adverse drug reaction reports from Sweden (2010-2024). Reporter types: physicians (45%), pharmacists (20%), nurses (15%), consumers (20%). Drug classes represented across all ATC groups with highest volume in cardiovascular, oncology, and CNS medications."
+    },
+    "useCases": [
+      { "title": "Statistical Signal Detection", "description": "Apply disproportionality analysis methods (PRR, ROR, BCPNN) to identify potential safety signals for marketed drugs." },
+      { "title": "Time-to-Onset Analysis", "description": "Characterize temporal patterns of adverse drug reactions to support causality assessment." }
+    ],
+    "publications": [
+      { "title": "Automated Signal Detection in Swedish Pharmacovigilance Data: A Comparative Analysis", "authors": "Hallberg P, Szilcz M, Wadelius M", "journal": "Drug Safety", "year": 2024, "doi": "10.1007/s40264-024-01389-2", "url": "https://doi.org/10.1007/s40264-024-01389-2" }
+    ],
+    "faq": [
+      { "question": "How current is the data?", "answer": "The dataset is updated quarterly with new reports. The latest refresh includes reports through March 2024." },
+      { "question": "Is this the same as EudraVigilance data?", "answer": "No. This dataset is specific to Swedish reports. Some overlap exists with EudraVigilance for Swedish-origin reports, but this dataset includes additional detail and consumer reports not always forwarded to EU databases." }
+    ]
   },
   {
     "id": "ds-010",
@@ -187,7 +414,32 @@
     "geographicCoverage": "Vastra Gotalandsregionen",
     "fairScore": { "findable": 4, "accessible": 3, "interoperable": 3, "reusable": 4, "total": 14 },
     "createdAt": "2025-11-20",
-    "status": "published"
+    "status": "published",
+    "dataTypes": ["Imaging", "Clinical/Journal", "Physiological"],
+    "fileFormats": ["DICOM", "CSV"],
+    "sensitivityLevel": "Pseudonymized",
+    "dataSize": "120 GB",
+    "updateFrequency": "Annual",
+    "methodology": "Retinal OCT scans acquired using Heidelberg Spectralis HRA+OCT devices during routine diabetic eye screening. Each scan independently graded by two board-certified ophthalmologists using ETDRS severity scale. Cohen's kappa for inter-rater agreement: 0.82. Discordant grades resolved by a senior retinal specialist. Linked with HbA1c values from clinical chemistry database.",
+    "limitations": "Only patients attending screening at Sahlgrenska are included — patients managed elsewhere or non-attendees not captured. OCT image quality varies; approximately 5% of scans excluded due to poor quality. HbA1c values may be up to 6 months before or after the scan date.",
+    "cohort": {
+      "ageRange": "25-88",
+      "sexDistribution": { "male": 54, "female": 46 },
+      "geographicArea": "Vastra Gotalandsregionen",
+      "sampleSize": 7400,
+      "description": "Diabetic patients (Type 1: 35%, Type 2: 65%) attending routine retinal screening at Sahlgrenska University Hospital. Multiple scans per patient (average 2.0 scans). ETDRS grades: No retinopathy (45%), mild NPDR (25%), moderate NPDR (15%), severe NPDR (10%), PDR (5%)."
+    },
+    "useCases": [
+      { "title": "Automated Retinopathy Screening", "description": "Develop AI models for automated diabetic retinopathy detection and grading from OCT scans to support nationwide screening programs." },
+      { "title": "Disease Progression Analysis", "description": "Study retinopathy progression patterns using longitudinal OCT data linked with metabolic control markers." }
+    ],
+    "publications": [
+      { "title": "Deep Learning for Diabetic Retinopathy Grading from OCT: A Swedish Validation Study", "authors": "Holmberg J, Andersson K, Malmqvist L", "journal": "Ophthalmology", "year": 2025, "doi": "10.1016/j.ophtha.2025.01.234", "url": "https://doi.org/10.1016/j.ophtha.2025.01.234" }
+    ],
+    "faq": [
+      { "question": "What OCT device was used?", "answer": "All scans acquired on Heidelberg Spectralis HRA+OCT. Volume scans centered on the macula with 49 B-scans covering a 6x6mm area." },
+      { "question": "Is color fundus photography also available?", "answer": "Not in this dataset. Color fundus images may be available as a separate dataset — contact the data holder for details." }
+    ]
   },
   {
     "id": "ds-011",
@@ -206,7 +458,35 @@
     "geographicCoverage": "National (Sweden)",
     "fairScore": { "findable": 5, "accessible": 5, "interoperable": 5, "reusable": 5, "total": 20 },
     "createdAt": "2025-02-14",
-    "status": "published"
+    "status": "published",
+    "dataTypes": ["Clinical/Journal"],
+    "fileFormats": ["CSV", "Parquet", "JSON"],
+    "sensitivityLevel": "Pseudonymized",
+    "dataSize": "4.5 GB",
+    "updateFrequency": "Annual",
+    "methodology": "Data compiled from the three national cancer screening programs: cervical (organized since 1960s), breast (since 1986), and colorectal (national rollout 2022). Invitation and participation data from regional screening coordination. Test results from certified laboratories. Follow-up diagnostics and staging from the Swedish Cancer Registry. Cross-linked using pseudonymized personal identifiers.",
+    "limitations": "Colorectal screening program has limited historical data (national since 2022, pilot regions from 2014). Regional variation in screening invitation intervals. Opportunistic screening outside organized programs is not captured. Some regions transitioned from cytology to HPV-based cervical screening during the study period.",
+    "cohort": {
+      "ageRange": "23-74",
+      "sexDistribution": { "male": 35, "female": 65 },
+      "geographicArea": "National (Sweden)",
+      "sampleSize": 1450000,
+      "description": "All individuals invited to organized cancer screening programs in Sweden. Cervical screening: women 23-64. Breast screening (mammography): women 40-74. Colorectal screening (FIT test): men and women 60-74. Overall participation rate approximately 72%."
+    },
+    "useCases": [
+      { "title": "Screening Program Evaluation", "description": "Evaluate participation rates, detection rates, and interval cancer rates across regions to optimize screening program effectiveness." },
+      { "title": "Health Equity Analysis", "description": "Analyze screening participation disparities across sociodemographic groups and geographic regions." },
+      { "title": "Cost-Effectiveness Modeling", "description": "Model the cost-effectiveness of different screening intervals and modalities using real-world outcome data." }
+    ],
+    "publications": [
+      { "title": "National Cancer Screening in Sweden: Participation, Detection Rates and Stage Distribution 2014-2024", "authors": "Wallin E, Dillner J, Törnberg S et al.", "journal": "European Journal of Cancer Prevention", "year": 2025, "doi": "10.1097/CEJ.0000000000000876", "url": "https://doi.org/10.1097/CEJ.0000000000000876" },
+      { "title": "Colorectal Cancer Screening Rollout in Sweden: Early Implementation Results", "authors": "Törnberg S, Wallin E", "journal": "Gut", "year": 2024, "doi": "10.1136/gutjnl-2024-332456", "url": "https://doi.org/10.1136/gutjnl-2024-332456" }
+    ],
+    "faq": [
+      { "question": "Which cancer types are covered?", "answer": "Cervical cancer (HPV/cytology screening), breast cancer (mammography), and colorectal cancer (fecal immunochemical test, FIT)." },
+      { "question": "Is individual-level data available?", "answer": "Yes, under formal access agreement. The CC BY 4.0 license applies to aggregated statistics. Individual-level pseudonymized data requires ethics approval and a Data Use Agreement." },
+      { "question": "Can this be linked with the Cancer Quality Registries?", "answer": "Yes, linkage with INCA (Swedish Cancer Quality Registries) is possible through application to the registry holder." }
+    ]
   },
   {
     "id": "ds-012",
@@ -225,6 +505,27 @@
     "geographicCoverage": "Region Stockholm",
     "fairScore": { "findable": 2, "accessible": 2, "interoperable": 1, "reusable": 1, "total": 6 },
     "createdAt": "2025-12-01",
-    "status": "draft"
+    "status": "draft",
+    "dataTypes": ["Genomics/Bioinformatics", "Biobank/Samples", "Clinical/Journal"],
+    "fileFormats": ["CSV", "HDF5", "JSON"],
+    "sensitivityLevel": "Special Category",
+    "dataSize": "15 GB",
+    "updateFrequency": "Ongoing",
+    "methodology": "RNA-seq performed on whole blood using Illumina NovaSeq (poly-A enrichment, 50M reads/sample). Proteomics using TMT-labeled mass spectrometry (Thermo Exploris 480). Clinical metadata extracted from Karolinska EHR. Data harmonization to OMOP CDM is in progress. Quality control includes PCA-based outlier detection and batch correction using ComBat-seq.",
+    "limitations": "Pilot dataset with limited sample size (n=500). Data harmonization to OMOP is ongoing — current version may have inconsistencies. Proteomics coverage limited to ~3,000 proteins. Missing clinical data for approximately 15% of samples. No longitudinal follow-up yet (planned for Phase 2).",
+    "cohort": {
+      "ageRange": "22-78",
+      "sexDistribution": { "male": 25, "female": 75 },
+      "geographicArea": "Region Stockholm",
+      "sampleSize": 500,
+      "description": "Patients with rheumatoid arthritis (n=300, 60%) and systemic lupus erythematosus (n=200, 40%) recruited from Karolinska University Hospital rheumatology clinic. Includes matched multi-omics data (transcriptomics + proteomics) and disease activity scores (DAS28 for RA, SLEDAI for SLE)."
+    },
+    "useCases": [
+      { "title": "Multi-Omics Disease Subtyping", "description": "Identify molecular subtypes of RA and SLE using integrated transcriptomic and proteomic signatures." }
+    ],
+    "publications": [],
+    "faq": [
+      { "question": "When will the full dataset be available?", "answer": "The pilot phase is expected to complete data harmonization by Q3 2026. A larger Phase 2 dataset (n=2000) is planned for 2027." }
+    ]
   }
 ]

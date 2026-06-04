@@ -3,60 +3,44 @@
     {
       "tier": "public-partner",
       "label": "Public Partner (Region/University)",
-      "price": 150000,
-      "currency": "SEK",
       "includes": "Full metadata tools, 20h expert support"
     },
     {
       "tier": "strategic-partner",
       "label": "Strategic Partner (Large Corp)",
-      "price": 350000,
-      "currency": "SEK",
       "includes": "Steering group seat, priority Data Behind Glass queue"
     },
     {
       "tier": "sme-startup",
       "label": "SME / Start-up",
-      "price": 25000,
-      "currency": "SEK",
       "includes": "Ecosystem access, pay-per-use IT"
     }
   ],
   "services": [
     {
       "name": "Sandbox (Data Behind Glass)",
-      "priceAcademic": 5000,
-      "priceCommercial": 15000,
       "unit": "per month/environment"
     },
     {
       "name": "A2D Run (Standard)",
-      "priceAcademic": 2000,
-      "priceCommercial": 8000,
       "unit": "per batch/run"
     },
     {
       "name": "Legal/Ethical Validation",
-      "priceAcademic": 1100,
-      "priceCommercial": 1800,
       "unit": "per hour"
     },
     {
       "name": "Data Curation / FAIRification",
-      "priceAcademic": 900,
-      "priceCommercial": 1600,
       "unit": "per hour"
     }
   ],
   "discounts": [
     {
       "name": "Code Contribution",
-      "percentage": 15,
       "condition": "Analysis algorithm made Open Source in HDIP library"
     },
     {
       "name": "Metadata Enrichment",
-      "percentage": 10,
       "condition": "Project significantly improves dataset searchability"
     }
   ]

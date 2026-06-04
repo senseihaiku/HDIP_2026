@@ -1,50 +1,38 @@
-import { useState } from 'react';
 import pricingData from '../data/pricing.json';
 import PricingTable from '../components/PricingTable';
 
 export default function Pricing() {
-  const [showCommercial, setShowCommercial] = useState(false);
-
   return (
     <div className="max-w-6xl mx-auto px-4 py-12">
-      <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">Pricing</h1>
+      <div className="text-center mb-10">
+        <h1 className="text-4xl font-bold text-gray-900 mb-4">Pricing &amp; Licensing</h1>
         <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          HDIP operates on a cost-recovery basis. All fees cover infrastructure,
-          legal expertise, and FAIRification — not profit.
+          HDIP will operate on a cost-recovery licensing model — fees cover infrastructure,
+          legal expertise, and FAIRification, not profit.
         </p>
       </div>
 
-      {/* Toggle */}
-      <div className="flex items-center justify-center gap-4 mb-12">
-        <span className={`text-sm font-medium ${!showCommercial ? 'text-teal-700' : 'text-gray-400'}`}>
-          Academic / Public
-        </span>
-        <button
-          onClick={() => setShowCommercial(!showCommercial)}
-          role="switch"
-          aria-checked={showCommercial}
-          aria-label="Toggle between academic and commercial pricing"
-          className={`relative w-14 h-7 rounded-full transition-colors ${
-            showCommercial ? 'bg-teal-600' : 'bg-gray-300'
-          }`}
-        >
-          <span
-            className={`absolute top-0.5 left-0.5 w-6 h-6 rounded-full bg-white shadow transition-transform ${
-              showCommercial ? 'translate-x-7' : ''
-            }`}
-          />
-        </button>
-        <span className={`text-sm font-medium ${showCommercial ? 'text-teal-700' : 'text-gray-400'}`}>
-          Commercial
-        </span>
+      {/* Adaptive pricing notice */}
+      <div className="mb-12 rounded-xl border border-teal-200 bg-teal-50 p-6 flex items-start gap-4">
+        <svg className="w-6 h-6 text-teal-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.8}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+        </svg>
+        <div>
+          <h2 className="text-base font-semibold text-gray-900 mb-1">
+            Pricing is still under development
+          </h2>
+          <p className="text-sm text-gray-600">
+            We are developing an <strong>adaptive pricing model</strong>. The membership tiers,
+            services, and FAIR incentives below outline how the licensing model is structured —
+            exact fees are not yet set and will be published once the model is finalised.
+          </p>
+        </div>
       </div>
 
       <PricingTable
         memberships={pricingData.memberships}
         services={pricingData.services}
         discounts={pricingData.discounts}
-        showCommercial={showCommercial}
       />
 
       {/* Surplus handling */}
@@ -58,7 +46,7 @@ export default function Pricing() {
             </p>
           </div>
           <div>
-            <h3 className="font-semibold text-gray-800 mb-2">Buffer (5%)</h3>
+            <h3 className="font-semibold text-gray-800 mb-2">Maintenance Buffer</h3>
             <p className="text-gray-600 text-sm">
               A portion of usage fees is set aside for a maintenance fund
               to handle unforeseen technical issues.

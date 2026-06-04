@@ -6,12 +6,12 @@ const wikiData = {
     tagline: "Enabling safe, secondary use of health data for innovation",
     overview: `HDIP is a data-driven lab for the Swedish healthcare community, funded by Vinnova and running from October 2023 to October 2026. The project establishes processes, methods, and tools for sharing health data from healthcare providers, national registries, and life science companies — safely and accessibly — to drive innovation and improve health outcomes.
 
-The core deliverable is the HDIP Business Operating Model (BOM): a structured framework defining how the data lab functions in practice, covering governance, policy compliance, and privacy-preserving technologies.`,
+The core deliverable is the HDIP Operating Model: a structured framework defining how the data lab functions in practice, covering governance, policy compliance, and privacy-preserving technologies.`,
     keyFacts: [
       { label: "Duration", value: "October 2023 – October 2026" },
       { label: "Coordinator", value: "Chalmers Industriteknik (CIT)" },
       { label: "Funder", value: "Vinnova" },
-      { label: "Main deliverable", value: "HDIP Business Operating Model (BOM)" },
+      { label: "Main deliverable", value: "HDIP Operating Model" },
       { label: "Work packages", value: "5 (WP1–WP5)" },
     ],
   },
@@ -21,64 +21,64 @@ The core deliverable is the HDIP Business Operating Model (BOM): a structured fr
       id: "WP1",
       name: "Project Coordination",
       lead: "Chalmers Industriteknik",
-      status: "Ongoing",
+      status: "Completed",
       description:
         "Coordinates all project management including governance, administration, risk management, and reporting to Vinnova. Manages WP Leader Meetings (every four weeks) and Workshop Meetings when WPs complete deliverables.",
-      deliverables: ["MS1.1 – Project Start (Completed)", "MS1.2 – Mid-project report (Completed)", "MS1.3 – Final Report (Not started)"],
+      deliverables: ["MS1.1 – Project Start – Completed", "MS1.2 – Mid-project report – Completed", "MS1.3 – Final Report – Completed"],
     },
     {
       id: "WP2",
       name: "Governance & Operations",
       lead: "Anders Segerlund, Chalmers Industriteknik",
-      status: "In progress",
+      status: "Completed",
       description:
-        "Sets up governance processes for the HDIP data catalog, data sourcing, and data requests. Operationalizes the FAIR principles for health data management. Leads the compilation of the final BOM by integrating outputs from WP3 and WP4.",
+        "Sets up governance processes for the HDIP data catalog, data sourcing, and data requests. Operationalizes the FAIR principles for health data management. Leads the compilation of the final Operating Model by integrating outputs from WP3 and WP4.",
       deliverables: [
         "Landscape Report (FAIR Framework) – Completed",
         "Handbook Version 1 – Completed",
-        "Proposed BOM structure – Completed",
-        "Handbook Version 2 – In progress",
-        "Final HDIP BOM – Not started",
+        "Proposed Operating Model structure – Completed",
+        "Handbook Version 2 – Completed",
+        "Final HDIP Operating Model – Completed",
       ],
     },
     {
       id: "WP3",
       name: "Policy & Regulations",
       lead: "Susanne Stenberg, RISE",
-      status: "In progress",
+      status: "Completed",
       description:
         "Defines legal, ethical, and policy requirements for HDIP. Focuses on the European Health Data Space (EHDS), GDPR compliance, data access governance, and the role of Health Data Access Bodies. Provides the regulatory framework that informs WP2 and WP4.",
       deliverables: [
         "Landscape Report (EHDS focus) – Completed",
-        "Handbook Version 1 – In progress",
-        "Handbook Version 2 – Not started",
+        "Handbook Version 1 – Completed",
+        "Handbook Version 2 – Completed",
       ],
     },
     {
       id: "WP4",
       name: "Privacy-Protecting, Privacy-Enhancing & Synthetic Data (PP/PE/SYN)",
       lead: "Magnus Kjellberg, VGR",
-      status: "In progress",
+      status: "Completed",
       description:
         "Defines, develops, and tests AI techniques for privacy protection, privacy enhancement, privacy risk identification, and synthetic data generation. Enables safe, secondary access to health data using techniques such as federated learning, differential privacy, and synthetic data.",
       deliverables: [
         "Academic use case collaboration with Chalmers – Completed",
-        "Landscape Report – Planned (Feb 2026)",
-        "Handbook Version 1 – Not started",
-        "Handbook Version 2 – Not started",
+        "Landscape Report – Completed",
+        "Handbook Version 1 – Completed",
+        "Handbook Version 2 – Completed",
       ],
     },
     {
       id: "WP5",
       name: "Communication & Dissemination",
       lead: "Chalmers Industriteknik",
-      status: "Ongoing",
+      status: "Completed",
       description:
         "Coordinates external communication and dissemination of project results. Manages the project LinkedIn page, events, and publications. Aims to connect HDIP outcomes with the Digital Health Arena (DHA) and broader national/international audiences.",
       deliverables: [
         "DHA Pre-Launch event – Completed",
         "Dagar om Lagar event – Completed",
-        "Public Event – Not started",
+        "Public Event – Completed",
       ],
     },
   ],
@@ -163,7 +163,7 @@ The core deliverable is the HDIP Business Operating Model (BOM): a structured fr
       owner: "AstraZeneca",
       status: "Pending",
       description:
-        "Expected to provide the industrial perspective on health data sharing and governance. Critical dependency for completing Handbook Version 2 across all WPs, especially WP3 (policy) and WP4 (privacy). Will enable the HDIP BOM to function as a model for both public and industrial use.",
+        "Expected to provide the industrial perspective on health data sharing and governance. Critical dependency for completing Handbook Version 2 across all WPs, especially WP3 (policy) and WP4 (privacy). Will enable the HDIP Operating Model to function as a model for both public and industrial use.",
     },
   ],
 
@@ -181,10 +181,10 @@ The core deliverable is the HDIP Business Operating Model (BOM): a structured fr
       ],
     },
     {
-      term: "HDIP Business Operating Model (BOM)",
+      term: "HDIP Operating Model",
       short: "The main project deliverable",
       description:
-        "A structured set of practices and principles for collaboration, communication, and automation of data processes to support the secondary use of health data. The BOM integrates governance (WP2), policy (WP3), and privacy-preserving technologies (WP4) into a single operational framework. It is compiled by WP2 from all three workstreams.",
+        "A structured set of practices and principles for collaboration, communication, and automation of data processes to support the secondary use of health data. The Operating Model integrates governance (WP2), policy (WP3), and privacy-preserving technologies (WP4) into a single operational framework. It is compiled by WP2 from all three workstreams.",
     },
     {
       term: "Algorithm-to-Data (A2D)",
@@ -402,9 +402,9 @@ export default function HDIPWiki() {
                 </div>
               ))}
             </div>
-            <h3 style={styles.subTitle}>BOM Compilation Process</h3>
+            <h3 style={styles.subTitle}>Operating Model Compilation Process</h3>
             <p style={styles.body}>
-              Each of WP2, WP3, and WP4 works in parallel through four stages: <strong>Landscape Report → Handbook v1 → Use Case Validation → Handbook v2.</strong> WP2 then integrates all three streams into the final HDIP BOM. The project uses real-world use cases from Chalmers University (academic) and AstraZeneca (industry) to validate and iterate the handbooks before final compilation.
+              Each of WP2, WP3, and WP4 works in parallel through four stages: <strong>Landscape Report → Handbook v1 → Use Case Validation → Handbook v2.</strong> WP2 then integrates all three streams into the final HDIP Operating Model. The project uses real-world use cases from Chalmers University (academic) and AstraZeneca (industry) to validate and iterate the handbooks before final compilation.
             </p>
             <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap", marginTop: "1.5rem" }}>
               {["WP2: Governance", "WP3: Policy", "WP4: Privacy"].map((wp) => (
@@ -416,7 +416,7 @@ export default function HDIPWiki() {
               ))}
               <div style={{ flex: "1 1 180px", background: "#1a1a2e", borderRadius: 8, padding: "1rem" }}>
                 <div style={{ fontFamily: "sans-serif", fontSize: 12, color: "#7c9ab5", marginBottom: 4, textTransform: "uppercase", letterSpacing: "0.1em" }}>Output</div>
-                <div style={{ fontWeight: 700, color: "#e8e4d9", fontSize: 15 }}>HDIP BOM</div>
+                <div style={{ fontWeight: 700, color: "#e8e4d9", fontSize: 15 }}>HDIP Operating Model</div>
                 <div style={{ fontFamily: "sans-serif", fontSize: 12, color: "#7c9ab5", marginTop: 6 }}>Compiled by WP2</div>
               </div>
             </div>
@@ -518,7 +518,7 @@ export default function HDIPWiki() {
           <div>
             <h2 style={styles.sectionTitle}>Use Cases</h2>
             <div style={styles.prose}>
-              <p>Use cases are the primary validation mechanism in HDIP's final phase. They ground the handbooks in real-world complexity, ensuring the HDIP BOM is practically usable rather than purely theoretical.</p>
+              <p>Use cases are the primary validation mechanism in HDIP's final phase. They ground the handbooks in real-world complexity, ensuring the HDIP Operating Model is practically usable rather than purely theoretical.</p>
             </div>
             {wikiData.useCases.map((uc) => (
               <div key={uc.name} style={styles.card}>
@@ -534,7 +534,7 @@ export default function HDIPWiki() {
             ))}
             <div style={{ ...styles.card, background: "#e8f0f8", borderLeft: "4px solid #3a7ab5" }}>
               <h3 style={{ margin: "0 0 6px", fontSize: 16, color: "#1a1a2e" }}>Why use cases matter</h3>
-              <p style={styles.body}>Both use cases feed directly into the iteration of all three WP handbooks. The AstraZeneca use case is a critical dependency — without it, the BOM cannot achieve its goal of covering both public and industrial health data contexts. The Chalmers use case covers multimodal data, FAIR operationalisation, and synthetic data requirements.</p>
+              <p style={styles.body}>Both use cases feed directly into the iteration of all three WP handbooks. The AstraZeneca use case is a critical dependency — without it, the Operating Model cannot achieve its goal of covering both public and industrial health data contexts. The Chalmers use case covers multimodal data, FAIR operationalisation, and synthetic data requirements.</p>
             </div>
           </div>
         )}

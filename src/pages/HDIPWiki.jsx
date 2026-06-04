@@ -1,5 +1,25 @@
 import { useState } from "react";
 
+/* ------------------------------------------------------------------ */
+/*  Palette — aligned with the HDIP platform (teal + slate neutrals)   */
+/* ------------------------------------------------------------------ */
+const C = {
+  font: "'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+  ink: "#0f172a", // slate-900 headings
+  body: "#334155", // slate-700 body
+  muted: "#64748b", // slate-500 labels
+  border: "#e2e8f0", // slate-200
+  pageBg: "#f8fafc", // slate-50
+  card: "#ffffff",
+  teal: "#0d9488", // teal-600 primary
+  tealDark: "#0f766e", // teal-700
+  tealDeep: "#134e4a", // teal-900 header / dark surfaces
+  tealTint: "#f0fdfa", // teal-50 light surfaces
+  tealTintBorder: "#99f6e4", // teal-200
+  tealOnDark: "#5eead4", // teal-300 accent on dark
+  tealSoftOnDark: "rgba(204, 251, 241, 0.85)", // teal-100-ish on dark
+};
+
 const wikiData = {
   project: {
     title: "Health Data Innovation Platform (HDIP)",
@@ -9,8 +29,8 @@ const wikiData = {
 The core deliverable is the HDIP Operating Model: a structured framework defining how the data lab functions in practice, covering governance, policy compliance, and privacy-preserving technologies.`,
     keyFacts: [
       { label: "Duration", value: "October 2023 – October 2026" },
-      { label: "Coordinator", value: "Chalmers Industriteknik (CIT)" },
-      { label: "Funder", value: "Vinnova" },
+      { label: "Coordinator", value: "Chalmers Industriteknik (CIT)", link: "https://chalmersindustriteknik.se" },
+      { label: "Funder", value: "Vinnova", link: "https://www.vinnova.se/en/" },
       { label: "Main deliverable", value: "HDIP Operating Model" },
       { label: "Work packages", value: "5 (WP1–WP5)" },
     ],
@@ -88,6 +108,7 @@ The core deliverable is the HDIP Operating Model: a structured framework definin
       name: "Chalmers Industriteknik (CIT)",
       role: "Coordinator",
       type: "core",
+      url: "https://chalmersindustriteknik.se",
       description:
         "Research organisation coordinating the project. Leads WP1, WP2, and WP5. Contributes expertise in Data Science, AI, innovation management, and data-driven lab development.",
       keyPeople: ["Jonathan Converse (Content Lead)", "Henrik Mindedal (Incoming Coordinator, WP1 & WP5 Lead)", "Anders Segerlund (WP2 Lead)"],
@@ -96,6 +117,7 @@ The core deliverable is the HDIP Operating Model: a structured framework definin
       name: "Västra Götalandsregionen (VGR)",
       role: "Data Provider & WP4 Lead",
       type: "core",
+      url: "https://www.vgregion.se",
       description:
         "Large regional healthcare provider and holder of clinical and patient data. Leads WP4 and contributes expertise in data governance, privacy-preserving techniques, and secure research environments.",
       keyPeople: ["Magnus Kjellberg (WP4 Lead)"],
@@ -104,6 +126,7 @@ The core deliverable is the HDIP Operating Model: a structured framework definin
       name: "RISE Research Institutes of Sweden",
       role: "Policy Expert & WP3 Lead",
       type: "core",
+      url: "https://www.ri.se/en",
       description:
         "Leads WP3, providing expertise in EU legislation, GDPR, EHDS, and data privacy regulations. Also contributes technical expertise in privacy-preserving techniques for health data.",
       keyPeople: ["Susanne Stenberg (WP3 Lead)", "Rickard Brännvall (WP4 Contributor)"],
@@ -112,6 +135,7 @@ The core deliverable is the HDIP Operating Model: a structured framework definin
       name: "AstraZeneca",
       role: "Data Provider & Reference Group",
       type: "core",
+      url: "https://www.astrazeneca.com",
       description:
         "Global life science company providing access to proprietary data assets and the industrial use case. Critical partner for validating the governance and policy frameworks from an industry perspective.",
       keyPeople: ["Per Hillertz (Reference Group)"],
@@ -120,6 +144,7 @@ The core deliverable is the HDIP Operating Model: a structured framework definin
       name: "AI Sweden (Lindholmen Science Park)",
       role: "Technical Expert",
       type: "supporting",
+      url: "https://www.ai.se/en",
       description:
         "Provides expertise in privacy-preserving AI techniques and access to networks related to health data usage. Contributes to WP4.",
       keyPeople: ["Fazeleh Hoseini (WP4 Contributor)"],
@@ -128,6 +153,7 @@ The core deliverable is the HDIP Operating Model: a structured framework definin
       name: "Chalmers University of Technology",
       role: "Reference Group & Use Case Owner",
       type: "supporting",
+      url: "https://www.chalmers.se/en/",
       description:
         "Owns the academic use case: developing AI-based image analysis for early detection and treatment monitoring of lung cancer, led by Ida Häggström.",
       keyPeople: ["Ida Häggström (Use Case 1 Owner)"],
@@ -136,6 +162,7 @@ The core deliverable is the HDIP Operating Model: a structured framework definin
       name: "Göteborgs Universitet / SND",
       role: "Reference Group",
       type: "supporting",
+      url: "https://snd.se/en",
       description:
         "Swedish National Data Service. Contributes expertise on FAIR use of research data and data discovery, including metadata cataloging and DOI registration.",
       keyPeople: ["Elisabeth Strandhagen", "Johan Fihn Malmberg", "Sara Svensson"],
@@ -144,6 +171,7 @@ The core deliverable is the HDIP Operating Model: a structured framework definin
       name: "GoCo Development AB & Vectura Fastigheter",
       role: "Cluster Development",
       type: "supporting",
+      url: "https://www.gocohealth.com",
       description:
         "Property and innovation cluster development partner for GoCo Health Innovation City. Supports dissemination and community development activities.",
       keyPeople: ["Britta Stensson (Reference Group)"],
@@ -152,6 +180,7 @@ The core deliverable is the HDIP Operating Model: a structured framework definin
       name: "SafeSpring",
       role: "Secure Infrastructure Partner (WP2 & WP5)",
       type: "supporting",
+      url: "https://www.safespring.com",
       description:
         "Swedish provider of secure, GDPR-compliant cloud infrastructure. As the technology partner supplying data infrastructure for AI use and for research and educational organisations, SafeSpring joins WP2 (Governance & Operations) so the project can understand how a provider of this kind would operate and maintain the platform together with a partner over time, and how it fits their existing pricing and business model. Through WP5 (Communication & Dissemination), SafeSpring helps provide, document, and disseminate these results to other organisations via articles, seminars, and related activities.",
     },
@@ -180,6 +209,7 @@ The core deliverable is the HDIP Operating Model: a structured framework definin
       short: "Findable, Accessible, Interoperable, Reusable",
       description:
         "The foundational framework for HDIP's approach to data management. FAIR data can be found by humans and machines, accessed under clear conditions, combined with other datasets, and reused for future research. A FAIR Score (0–100%) measures compliance and can influence data pricing and licensing.",
+      link: "https://www.go-fair.org/fair-principles/",
       subprinciples: [
         "F: Globally unique & persistent identifiers; rich metadata; indexed in searchable resources",
         "A: Standard communication protocols; metadata persists even if data is unavailable",
@@ -228,6 +258,7 @@ The core deliverable is the HDIP Operating Model: a structured framework definin
       short: "EU framework for cross-border health data access",
       description:
         "An EU initiative enabling cross-border access to and use of health data for care, research, and policy. EHDS is the primary regulatory and standards context for WP3. HDIP is designed to be EHDS-compatible, using HDCAT-AP metadata standards and aligning with EHDS ontologies wherever possible.",
+      link: "https://health.ec.europa.eu/ehealth-digital-health-and-care/european-health-data-space_en",
     },
     {
       term: "FAIR4Health",
@@ -276,14 +307,37 @@ const StatusBadge = ({ status }) => {
     "In progress": "bg-teal-100 text-teal-800",
     "Not started": "bg-gray-100 text-gray-500",
     Ongoing: "bg-teal-200 text-teal-900",
-    Pending: "bg-gray-200 text-gray-700",
+    Pending: "bg-amber-100 text-amber-800",
   };
   return (
-    <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${colors[status] || "bg-gray-100 text-gray-600"}`}>
+    <span className={`text-xs font-semibold px-2.5 py-0.5 rounded-full ${colors[status] || "bg-gray-100 text-gray-600"}`}>
       {status}
     </span>
   );
 };
+
+/* Small ↗ glyph for external links */
+const ExtArrow = () => (
+  <svg aria-hidden="true" width="11" height="11" viewBox="0 0 24 24" fill="none"
+    stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+    style={{ display: "inline", verticalAlign: "baseline", marginLeft: 3, opacity: 0.7 }}>
+    <path d="M7 17L17 7M17 7H8M17 7v9" />
+  </svg>
+);
+
+/* External link styled with Tailwind so it gets a proper hover state */
+const ExtLink = ({ href, children, className = "" }) => (
+  <a
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    onClick={(e) => e.stopPropagation()}
+    className={`text-teal-700 hover:text-teal-900 underline decoration-teal-300 hover:decoration-teal-500 decoration-1 underline-offset-2 transition-colors ${className}`}
+  >
+    {children}
+    <ExtArrow />
+  </a>
+);
 
 export default function HDIPWiki() {
   const [activeSection, setActiveSection] = useState("project");
@@ -307,37 +361,52 @@ export default function HDIPWiki() {
       )
     : [];
 
+  /* Renders a partner name, linked to the partner's website when available */
+  const PartnerHeading = ({ p, fontSize }) => (
+    <h3 style={{ margin: "0 0 4px", fontSize, fontWeight: 700, color: C.ink, lineHeight: 1.3 }}>
+      {p.url ? <ExtLink href={p.url}>{p.name}</ExtLink> : p.name}
+    </h3>
+  );
+
   return (
-    <div style={{ fontFamily: "'Georgia', serif", background: "#f7f6f2", minHeight: "100vh" }}>
+    <div style={{ fontFamily: C.font, background: C.pageBg, minHeight: "100vh", color: C.body }}>
       {/* Header */}
-      <header style={{ background: "#1a1a2e", color: "#e8e4d9", padding: "2.5rem 2rem 1.5rem" }}>
-        <div style={{ maxWidth: 960, margin: "0 auto" }}>
-          <div style={{ display: "flex", alignItems: "baseline", gap: "1rem", flexWrap: "wrap" }}>
-            <span style={{ fontSize: 11, letterSpacing: "0.18em", textTransform: "uppercase", color: "#7c9ab5", fontFamily: "sans-serif" }}>
+      <header
+        style={{
+          background: `linear-gradient(135deg, ${C.tealDark} 0%, ${C.tealDeep} 100%)`,
+          color: "#ffffff",
+          padding: "2.75rem 2rem 1.75rem",
+        }}
+      >
+        <div style={{ maxWidth: 980, margin: "0 auto" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.85rem", flexWrap: "wrap" }}>
+            <span style={{ fontSize: 11, letterSpacing: "0.2em", textTransform: "uppercase", color: C.tealOnDark, fontWeight: 600 }}>
               HDIP Project Wiki
             </span>
-            <span style={{ color: "#3a5a80", fontSize: 13, fontFamily: "sans-serif" }}>v1.0 · 2026</span>
+            <span style={{ color: C.tealSoftOnDark, fontSize: 12, padding: "2px 8px", borderRadius: 999, background: "rgba(255,255,255,0.1)" }}>
+              v1.0 · 2026
+            </span>
           </div>
-          <h1 style={{ margin: "0.5rem 0 0.25rem", fontSize: "clamp(1.4rem, 3vw, 2rem)", fontWeight: 700, letterSpacing: "-0.01em", lineHeight: 1.2 }}>
+          <h1 style={{ margin: "0.6rem 0 0.35rem", fontSize: "clamp(1.5rem, 3.2vw, 2.15rem)", fontWeight: 800, letterSpacing: "-0.02em", lineHeight: 1.15 }}>
             Health Data Innovation Platform
           </h1>
-          <p style={{ margin: 0, color: "#a8c4dc", fontFamily: "sans-serif", fontSize: 14 }}>
+          <p style={{ margin: 0, color: C.tealSoftOnDark, fontSize: 14.5, fontWeight: 500 }}>
             A Vinnova-funded project · October 2023 – October 2026
           </p>
           {/* Search */}
-          <div style={{ marginTop: "1.25rem", position: "relative", maxWidth: 400 }}>
+          <div style={{ marginTop: "1.4rem", position: "relative", maxWidth: 420 }}>
             <input
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search the wiki…"
               style={{
                 width: "100%",
-                padding: "0.5rem 1rem",
-                borderRadius: 6,
-                border: "1px solid #3a5a80",
-                background: "#0f1224",
-                color: "#e8e4d9",
-                fontFamily: "sans-serif",
+                padding: "0.6rem 1rem",
+                borderRadius: 8,
+                border: "1px solid rgba(255,255,255,0.25)",
+                background: "rgba(255,255,255,0.1)",
+                color: "#ffffff",
+                fontFamily: C.font,
                 fontSize: 14,
                 outline: "none",
                 boxSizing: "border-box",
@@ -345,20 +414,20 @@ export default function HDIPWiki() {
             />
             {searchResults.length > 0 && (
               <div style={{
-                position: "absolute", top: "calc(100% + 4px)", left: 0, right: 0,
-                background: "#0f1224", border: "1px solid #3a5a80", borderRadius: 6,
-                zIndex: 99, boxShadow: "0 8px 24px rgba(0,0,0,0.4)",
+                position: "absolute", top: "calc(100% + 6px)", left: 0, right: 0,
+                background: "#ffffff", border: `1px solid ${C.border}`, borderRadius: 8,
+                zIndex: 99, boxShadow: "0 12px 32px rgba(15, 23, 42, 0.18)", overflow: "hidden",
               }}>
                 {searchResults.map((r, i) => (
                   <button key={i}
                     onClick={() => { setActiveSection(r.section); setSearchQuery(""); }}
                     style={{
-                      display: "block", width: "100%", textAlign: "left", padding: "0.6rem 1rem",
-                      background: "none", border: "none", color: "#a8c4dc", cursor: "pointer",
-                      fontFamily: "sans-serif", fontSize: 13, borderBottom: "1px solid #1e2d45",
+                      display: "block", width: "100%", textAlign: "left", padding: "0.65rem 1rem",
+                      background: "none", border: "none", cursor: "pointer",
+                      fontFamily: C.font, fontSize: 13, borderBottom: `1px solid ${C.border}`,
                     }}>
-                    <span style={{ color: "#e8e4d9", fontWeight: 600 }}>{r.label}</span>
-                    <span style={{ marginLeft: 8, fontSize: 11, color: "#5a7fa0", textTransform: "uppercase", letterSpacing: "0.1em" }}>
+                    <span style={{ color: C.ink, fontWeight: 600 }}>{r.label}</span>
+                    <span style={{ marginLeft: 8, fontSize: 11, color: C.teal, textTransform: "uppercase", letterSpacing: "0.1em", fontWeight: 600 }}>
                       {r.section}
                     </span>
                   </button>
@@ -370,20 +439,20 @@ export default function HDIPWiki() {
       </header>
 
       {/* Nav */}
-      <nav style={{ background: "#14213d", borderBottom: "1px solid #2a3a5e", overflowX: "auto" }}>
-        <div style={{ maxWidth: 960, margin: "0 auto", display: "flex", gap: 0 }}>
+      <nav style={{ background: C.tealDeep, borderBottom: `1px solid rgba(255,255,255,0.08)`, overflowX: "auto", position: "sticky", top: 0, zIndex: 50 }}>
+        <div style={{ maxWidth: 980, margin: "0 auto", display: "flex", gap: 0 }}>
           {NAV_ITEMS.map((item) => (
             <button key={item.id} onClick={() => setActiveSection(item.id)}
               style={{
-                padding: "0.8rem 1.2rem",
+                padding: "0.85rem 1.25rem",
                 background: "none",
                 border: "none",
-                borderBottom: activeSection === item.id ? "2px solid #7c9ab5" : "2px solid transparent",
-                color: activeSection === item.id ? "#e8e4d9" : "#6e8aaa",
+                borderBottom: activeSection === item.id ? `2px solid ${C.tealOnDark}` : "2px solid transparent",
+                color: activeSection === item.id ? "#ffffff" : "rgba(255,255,255,0.6)",
                 cursor: "pointer",
-                fontFamily: "sans-serif",
-                fontSize: 13,
-                fontWeight: activeSection === item.id ? 600 : 400,
+                fontFamily: C.font,
+                fontSize: 13.5,
+                fontWeight: activeSection === item.id ? 600 : 500,
                 whiteSpace: "nowrap",
                 transition: "color 0.15s",
               }}>
@@ -394,37 +463,39 @@ export default function HDIPWiki() {
       </nav>
 
       {/* Content */}
-      <main style={{ maxWidth: 960, margin: "0 auto", padding: "2rem 1.5rem" }}>
+      <main style={{ maxWidth: 980, margin: "0 auto", padding: "2.25rem 1.5rem 3rem" }}>
 
         {/* PROJECT OVERVIEW */}
         {activeSection === "project" && (
           <div>
             <h2 style={styles.sectionTitle}>Project Overview</h2>
-            <div style={styles.prose}>{wikiData.project.overview.split("\n\n").map((p, i) => <p key={i}>{p}</p>)}</div>
+            <div style={styles.prose}>{wikiData.project.overview.split("\n\n").map((p, i) => <p key={i} style={{ marginTop: i === 0 ? 0 : "1rem" }}>{p}</p>)}</div>
             <div style={styles.factBox}>
               {wikiData.project.keyFacts.map((f) => (
                 <div key={f.label} style={styles.factRow}>
                   <span style={styles.factLabel}>{f.label}</span>
-                  <span style={styles.factValue}>{f.value}</span>
+                  <span style={styles.factValue}>
+                    {f.link ? <ExtLink href={f.link}>{f.value}</ExtLink> : f.value}
+                  </span>
                 </div>
               ))}
             </div>
             <h3 style={styles.subTitle}>Operating Model Compilation Process</h3>
             <p style={styles.body}>
-              Each of WP2, WP3, and WP4 works in parallel through four stages: <strong>Landscape Report → Handbook v1 → Use Case Validation → Handbook v2.</strong> WP2 then integrates all three streams into the final HDIP Operating Model. The project uses real-world use cases from Chalmers University (academic) and AstraZeneca (industry) to validate and iterate the handbooks before final compilation.
+              Each of WP2, WP3, and WP4 works in parallel through four stages: <strong style={{ color: C.ink }}>Landscape Report → Handbook v1 → Use Case Validation → Handbook v2.</strong> WP2 then integrates all three streams into the final HDIP Operating Model. The project uses real-world use cases from Chalmers University (academic) and AstraZeneca (industry) to validate and iterate the handbooks before final compilation.
             </p>
             <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap", marginTop: "1.5rem" }}>
               {["WP2: Governance", "WP3: Policy", "WP4: Privacy"].map((wp) => (
-                <div key={wp} style={{ flex: "1 1 180px", background: "#e8e4d9", borderRadius: 8, padding: "1rem", border: "1px solid #d0cabb" }}>
-                  <div style={{ fontFamily: "sans-serif", fontSize: 12, color: "#7a6f5a", marginBottom: 4, textTransform: "uppercase", letterSpacing: "0.1em" }}>Stream</div>
-                  <div style={{ fontWeight: 700, color: "#1a1a2e", fontSize: 15 }}>{wp}</div>
-                  <div style={{ fontFamily: "sans-serif", fontSize: 12, color: "#7a6f5a", marginTop: 6 }}>Landscape → HB v1 → Use Case → HB v2</div>
+                <div key={wp} style={{ flex: "1 1 180px", background: C.tealTint, borderRadius: 10, padding: "1rem 1.1rem", border: `1px solid ${C.tealTintBorder}` }}>
+                  <div style={{ fontSize: 11, color: C.teal, marginBottom: 4, textTransform: "uppercase", letterSpacing: "0.1em", fontWeight: 600 }}>Stream</div>
+                  <div style={{ fontWeight: 700, color: C.ink, fontSize: 15 }}>{wp}</div>
+                  <div style={{ fontSize: 12, color: C.muted, marginTop: 6 }}>Landscape → HB v1 → Use Case → HB v2</div>
                 </div>
               ))}
-              <div style={{ flex: "1 1 180px", background: "#1a1a2e", borderRadius: 8, padding: "1rem" }}>
-                <div style={{ fontFamily: "sans-serif", fontSize: 12, color: "#7c9ab5", marginBottom: 4, textTransform: "uppercase", letterSpacing: "0.1em" }}>Output</div>
-                <div style={{ fontWeight: 700, color: "#e8e4d9", fontSize: 15 }}>HDIP Operating Model</div>
-                <div style={{ fontFamily: "sans-serif", fontSize: 12, color: "#7c9ab5", marginTop: 6 }}>Compiled by WP2</div>
+              <div style={{ flex: "1 1 180px", background: `linear-gradient(135deg, ${C.tealDark}, ${C.tealDeep})`, borderRadius: 10, padding: "1rem 1.1rem" }}>
+                <div style={{ fontSize: 11, color: C.tealOnDark, marginBottom: 4, textTransform: "uppercase", letterSpacing: "0.1em", fontWeight: 600 }}>Output</div>
+                <div style={{ fontWeight: 700, color: "#ffffff", fontSize: 15 }}>HDIP Operating Model</div>
+                <div style={{ fontSize: 12, color: C.tealSoftOnDark, marginTop: 6 }}>Compiled by WP2</div>
               </div>
             </div>
           </div>
@@ -440,24 +511,24 @@ export default function HDIPWiki() {
                   onClick={() => setExpandedWP(expandedWP === wp.id ? null : wp.id)}
                   className="cursor-pointer">
                   <div>
-                    <span style={{ fontFamily: "sans-serif", fontSize: 11, color: "#7c9ab5", letterSpacing: "0.14em", textTransform: "uppercase" }}>{wp.id}</span>
-                    <h3 style={{ margin: "2px 0 4px", fontSize: 18, color: "#1a1a2e" }}>{wp.name}</h3>
-                    <div style={{ fontFamily: "sans-serif", fontSize: 13, color: "#6a6055" }}>Lead: {wp.lead}</div>
+                    <span style={{ fontSize: 11, color: C.teal, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 700 }}>{wp.id}</span>
+                    <h3 style={{ margin: "3px 0 4px", fontSize: 18, fontWeight: 700, color: C.ink }}>{wp.name}</h3>
+                    <div style={{ fontSize: 13, color: C.muted }}>Lead: {wp.lead}</div>
                   </div>
                   <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
                     <StatusBadge status={wp.status} />
-                    <span style={{ color: "#aaa", fontSize: 18, cursor: "pointer" }}>{expandedWP === wp.id ? "▲" : "▼"}</span>
+                    <span style={{ color: C.muted, fontSize: 14 }}>{expandedWP === wp.id ? "▲" : "▼"}</span>
                   </div>
                 </div>
                 <p style={{ ...styles.body, marginTop: 10 }}>{wp.description}</p>
                 {expandedWP === wp.id && (
-                  <div style={{ marginTop: 12, borderTop: "1px solid #e0dbd0", paddingTop: 12 }}>
-                    <div style={{ fontFamily: "sans-serif", fontSize: 12, textTransform: "uppercase", letterSpacing: "0.12em", color: "#7a6f5a", marginBottom: 8 }}>Deliverables</div>
+                  <div style={{ marginTop: 14, borderTop: `1px solid ${C.border}`, paddingTop: 14 }}>
+                    <div style={styles.kicker}>Deliverables</div>
                     {wp.deliverables.map((d, i) => {
                       const status = d.includes("Completed") ? "Completed" : d.includes("In progress") ? "In progress" : d.includes("Not started") ? "Not started" : d.includes("Planned") ? "Pending" : null;
                       return (
-                        <div key={i} style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6, fontFamily: "sans-serif", fontSize: 13, color: "#333" }}>
-                          <span>{status === "Completed" ? "✓" : status === "In progress" ? "◑" : "○"}</span>
+                        <div key={i} style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 7, fontSize: 13.5, color: C.body }}>
+                          <span style={{ color: status === "Completed" ? C.teal : C.muted }}>{status === "Completed" ? "✓" : status === "In progress" ? "◑" : "○"}</span>
                           <span>{d.replace(/ – (Completed|In progress|Not started|Planned)/, "")}</span>
                           {status && <StatusBadge status={status} />}
                         </div>
@@ -474,23 +545,23 @@ export default function HDIPWiki() {
         {activeSection === "partners" && (
           <div>
             <h2 style={styles.sectionTitle}>Project Partners</h2>
-            <p style={styles.body}>The consortium spans healthcare providers, research institutes, a life science company, and innovation clusters — together covering governance, policy, and technical privacy expertise.</p>
+            <p style={styles.body}>The consortium spans healthcare providers, research institutes, a life science company, and innovation clusters — together covering governance, policy, and technical privacy expertise. Partner names link to each organisation's website.</p>
             <h3 style={styles.subTitle}>Core Partners</h3>
             {wikiData.partners.filter(p => p.type === "core").map((p) => (
               <div key={p.name} style={styles.card} onClick={() => setExpandedPartner(expandedPartner === p.name ? null : p.name)}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", cursor: "pointer" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", cursor: "pointer", gap: 12 }}>
                   <div>
-                    <h3 style={{ margin: "0 0 3px", fontSize: 17, color: "#1a1a2e" }}>{p.name}</h3>
-                    <span style={{ fontFamily: "sans-serif", fontSize: 12, color: "#7c9ab5", textTransform: "uppercase", letterSpacing: "0.1em" }}>{p.role}</span>
+                    <PartnerHeading p={p} fontSize={17} />
+                    <span style={styles.kickerInline}>{p.role}</span>
                   </div>
-                  <span style={{ color: "#aaa", fontSize: 16 }}>{expandedPartner === p.name ? "▲" : "▼"}</span>
+                  <span style={{ color: C.muted, fontSize: 14, flexShrink: 0 }}>{expandedPartner === p.name ? "▲" : "▼"}</span>
                 </div>
                 <p style={{ ...styles.body, marginTop: 8 }}>{p.description}</p>
                 {expandedPartner === p.name && p.keyPeople?.length > 0 && (
-                  <div style={{ marginTop: 10, borderTop: "1px solid #e0dbd0", paddingTop: 10 }}>
-                    <div style={{ fontFamily: "sans-serif", fontSize: 12, textTransform: "uppercase", letterSpacing: "0.1em", color: "#7a6f5a", marginBottom: 6 }}>Key People</div>
+                  <div style={{ marginTop: 12, borderTop: `1px solid ${C.border}`, paddingTop: 12 }}>
+                    <div style={styles.kicker}>Key People</div>
                     {p.keyPeople.map((person, i) => (
-                      <div key={i} style={{ fontFamily: "sans-serif", fontSize: 13, color: "#444", marginBottom: 3 }}>· {person}</div>
+                      <div key={i} style={{ fontSize: 13.5, color: C.body, marginBottom: 4 }}>· {person}</div>
                     ))}
                   </div>
                 )}
@@ -498,20 +569,20 @@ export default function HDIPWiki() {
             ))}
             <h3 style={styles.subTitle}>Supporting Partners</h3>
             {wikiData.partners.filter(p => p.type === "supporting").map((p) => (
-              <div key={p.name} style={{ ...styles.card, borderLeft: "3px solid #c8c0b0" }} onClick={() => setExpandedPartner(expandedPartner === p.name ? null : p.name)}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", cursor: "pointer" }}>
+              <div key={p.name} style={{ ...styles.card, borderLeft: `3px solid ${C.tealTintBorder}` }} onClick={() => setExpandedPartner(expandedPartner === p.name ? null : p.name)}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", cursor: "pointer", gap: 12 }}>
                   <div>
-                    <h3 style={{ margin: "0 0 3px", fontSize: 16, color: "#1a1a2e" }}>{p.name}</h3>
-                    <span style={{ fontFamily: "sans-serif", fontSize: 12, color: "#9a8f7a", textTransform: "uppercase", letterSpacing: "0.1em" }}>{p.role}</span>
+                    <PartnerHeading p={p} fontSize={16} />
+                    <span style={styles.kickerInline}>{p.role}</span>
                   </div>
-                  <span style={{ color: "#aaa", fontSize: 16 }}>{expandedPartner === p.name ? "▲" : "▼"}</span>
+                  <span style={{ color: C.muted, fontSize: 14, flexShrink: 0 }}>{expandedPartner === p.name ? "▲" : "▼"}</span>
                 </div>
                 <p style={{ ...styles.body, marginTop: 8 }}>{p.description}</p>
                 {expandedPartner === p.name && p.keyPeople?.length > 0 && (
-                  <div style={{ marginTop: 10, borderTop: "1px solid #e0dbd0", paddingTop: 10 }}>
-                    <div style={{ fontFamily: "sans-serif", fontSize: 12, textTransform: "uppercase", letterSpacing: "0.1em", color: "#7a6f5a", marginBottom: 6 }}>Key People</div>
+                  <div style={{ marginTop: 12, borderTop: `1px solid ${C.border}`, paddingTop: 12 }}>
+                    <div style={styles.kicker}>Key People</div>
                     {p.keyPeople.map((person, i) => (
-                      <div key={i} style={{ fontFamily: "sans-serif", fontSize: 13, color: "#444", marginBottom: 3 }}>· {person}</div>
+                      <div key={i} style={{ fontSize: 13.5, color: C.body, marginBottom: 4 }}>· {person}</div>
                     ))}
                   </div>
                 )}
@@ -525,22 +596,22 @@ export default function HDIPWiki() {
           <div>
             <h2 style={styles.sectionTitle}>Use Cases</h2>
             <div style={styles.prose}>
-              <p>Use cases are the primary validation mechanism in HDIP's final phase. They ground the handbooks in real-world complexity, ensuring the HDIP Operating Model is practically usable rather than purely theoretical.</p>
+              <p style={{ margin: 0 }}>Use cases are the primary validation mechanism in HDIP's final phase. They ground the handbooks in real-world complexity, ensuring the HDIP Operating Model is practically usable rather than purely theoretical.</p>
             </div>
             {wikiData.useCases.map((uc) => (
               <div key={uc.name} style={styles.card}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: 8 }}>
                   <div>
-                    <h3 style={{ margin: "0 0 4px", fontSize: 18, color: "#1a1a2e" }}>{uc.name}</h3>
-                    <div style={{ fontFamily: "sans-serif", fontSize: 13, color: "#6a6055" }}>Owner: {uc.owner}</div>
+                    <h3 style={{ margin: "0 0 4px", fontSize: 18, fontWeight: 700, color: C.ink }}>{uc.name}</h3>
+                    <div style={{ fontSize: 13, color: C.muted }}>Owner: {uc.owner}</div>
                   </div>
                   <StatusBadge status={uc.status} />
                 </div>
                 <p style={{ ...styles.body, marginTop: 10 }}>{uc.description}</p>
               </div>
             ))}
-            <div style={{ ...styles.card, background: "#e8f0f8", borderLeft: "4px solid #3a7ab5" }}>
-              <h3 style={{ margin: "0 0 6px", fontSize: 16, color: "#1a1a2e" }}>Why use cases matter</h3>
+            <div style={{ ...styles.card, background: C.tealTint, borderLeft: `4px solid ${C.teal}` }}>
+              <h3 style={{ margin: "0 0 6px", fontSize: 16, fontWeight: 700, color: C.ink }}>Why use cases matter</h3>
               <p style={styles.body}>Both use cases feed directly into the iteration of all three WP handbooks. The AstraZeneca use case is a critical dependency — without it, the Operating Model cannot achieve its goal of covering both public and industrial health data contexts. The Chalmers use case covers multimodal data, FAIR operationalisation, and synthetic data requirements.</p>
             </div>
           </div>
@@ -556,20 +627,25 @@ export default function HDIPWiki() {
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", cursor: "pointer" }}
                   onClick={() => setExpandedConcept(expandedConcept === c.term ? null : c.term)}>
                   <div>
-                    <h3 style={{ margin: "0 0 3px", fontSize: 17, color: "#1a1a2e" }}>{c.term}</h3>
-                    <div style={{ fontFamily: "sans-serif", fontSize: 13, color: "#7c9ab5", fontStyle: "italic" }}>{c.short}</div>
+                    <h3 style={{ margin: "0 0 3px", fontSize: 17, fontWeight: 700, color: C.ink }}>{c.term}</h3>
+                    <div style={{ fontSize: 13, color: C.teal, fontWeight: 500 }}>{c.short}</div>
                   </div>
-                  <span style={{ color: "#aaa", fontSize: 16, marginLeft: 12, flexShrink: 0 }}>{expandedConcept === c.term ? "▲" : "▼"}</span>
+                  <span style={{ color: C.muted, fontSize: 14, marginLeft: 12, flexShrink: 0 }}>{expandedConcept === c.term ? "▲" : "▼"}</span>
                 </div>
                 {expandedConcept === c.term && (
                   <div style={{ marginTop: 12 }}>
                     <p style={styles.body}>{c.description}</p>
                     {c.subprinciples && (
-                      <div style={{ marginTop: 10 }}>
-                        <div style={{ fontFamily: "sans-serif", fontSize: 12, textTransform: "uppercase", letterSpacing: "0.1em", color: "#7a6f5a", marginBottom: 6 }}>Sub-principles</div>
+                      <div style={{ marginTop: 12 }}>
+                        <div style={styles.kicker}>Sub-principles</div>
                         {c.subprinciples.map((sp, i) => (
-                          <div key={i} style={{ fontFamily: "sans-serif", fontSize: 13, color: "#444", marginBottom: 5, paddingLeft: 12, borderLeft: "2px solid #c8c0b0" }}>{sp}</div>
+                          <div key={i} style={{ fontSize: 13.5, color: C.body, marginBottom: 6, paddingLeft: 12, borderLeft: `2px solid ${C.tealTintBorder}` }}>{sp}</div>
                         ))}
+                      </div>
+                    )}
+                    {c.link && (
+                      <div style={{ marginTop: 12, fontSize: 13.5 }}>
+                        <ExtLink href={c.link}>Learn more</ExtLink>
                       </div>
                     )}
                   </div>
@@ -587,14 +663,14 @@ export default function HDIPWiki() {
             <h3 style={styles.subTitle}>Available Data Types</h3>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))", gap: "0.75rem", marginTop: "0.5rem" }}>
               {wikiData.dataCatalogue.dataTypes.map((dt, i) => (
-                <div key={i} style={{ background: "#fff", border: "1px solid #e0dbd0", borderRadius: 6, padding: "0.75rem 1rem", fontFamily: "sans-serif", fontSize: 13, color: "#333" }}>
+                <div key={i} style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 8, padding: "0.8rem 1rem", fontSize: 13.5, color: C.body }}>
                   {dt}
                 </div>
               ))}
             </div>
-            <div style={{ ...styles.card, marginTop: "2rem", background: "#1a1a2e", color: "#e8e4d9" }}>
-              <h3 style={{ margin: "0 0 8px", fontSize: 16, color: "#a8c4dc" }}>Knowledge Graph Layer</h3>
-              <p style={{ fontFamily: "sans-serif", fontSize: 13, color: "#c0d4e8", lineHeight: 1.7, margin: 0 }}>
+            <div style={{ ...styles.card, marginTop: "2rem", background: `linear-gradient(135deg, ${C.tealDark}, ${C.tealDeep})`, border: "none" }}>
+              <h3 style={{ margin: "0 0 8px", fontSize: 16, fontWeight: 700, color: C.tealOnDark }}>Knowledge Graph Layer</h3>
+              <p style={{ fontSize: 13.5, color: C.tealSoftOnDark, lineHeight: 1.75, margin: 0 }}>
                 The catalogue integrates a Knowledge Graph (KG) that transforms isolated metadata records into a semantically connected network. This enables intelligent dataset discovery by disease, schema, or ontology term; lineage tracing; schema harmonisation across OMOP, FHIR, and other standards; and cross-dataset joins using SPARQL or Cypher queries.
               </p>
             </div>
@@ -602,7 +678,7 @@ export default function HDIPWiki() {
         )}
       </main>
 
-      <footer style={{ borderTop: "1px solid #d0cabb", padding: "1.5rem", textAlign: "center", fontFamily: "sans-serif", fontSize: 12, color: "#9a8f7a", marginTop: "2rem" }}>
+      <footer style={{ borderTop: `1px solid ${C.border}`, padding: "1.5rem", textAlign: "center", fontSize: 12.5, color: C.muted, marginTop: "1rem" }}>
         HDIP Project Wiki · Chalmers Industriteknik · For internal use
       </footer>
     </div>
@@ -611,66 +687,82 @@ export default function HDIPWiki() {
 
 const styles = {
   sectionTitle: {
-    fontSize: "clamp(1.3rem, 2.5vw, 1.7rem)",
-    fontWeight: 700,
-    color: "#1a1a2e",
-    marginBottom: "0.5rem",
-    borderBottom: "2px solid #d0cabb",
-    paddingBottom: "0.5rem",
+    fontSize: "clamp(1.4rem, 2.6vw, 1.8rem)",
+    fontWeight: 800,
+    color: C.ink,
+    letterSpacing: "-0.02em",
+    marginBottom: "0.85rem",
+    borderBottom: `2px solid ${C.tealTintBorder}`,
+    paddingBottom: "0.6rem",
   },
   subTitle: {
-    fontSize: "1.1rem",
+    fontSize: "1.15rem",
     fontWeight: 700,
-    color: "#2a3a5e",
-    marginTop: "1.75rem",
-    marginBottom: "0.75rem",
+    color: C.tealDark,
+    marginTop: "1.85rem",
+    marginBottom: "0.85rem",
   },
   prose: {
-    fontFamily: "sans-serif",
-    fontSize: 14,
-    color: "#333",
+    fontSize: 15,
+    color: C.body,
     lineHeight: 1.75,
-    marginBottom: "1.25rem",
+    marginBottom: "1.4rem",
   },
   body: {
-    fontFamily: "sans-serif",
-    fontSize: 14,
-    color: "#444",
-    lineHeight: 1.7,
+    fontSize: 14.5,
+    color: C.body,
+    lineHeight: 1.75,
     margin: 0,
   },
+  kicker: {
+    fontSize: 11,
+    textTransform: "uppercase",
+    letterSpacing: "0.12em",
+    color: C.muted,
+    fontWeight: 700,
+    marginBottom: 8,
+  },
+  kickerInline: {
+    fontSize: 11,
+    color: C.teal,
+    textTransform: "uppercase",
+    letterSpacing: "0.1em",
+    fontWeight: 700,
+  },
   card: {
-    background: "#fff",
-    border: "1px solid #e0dbd0",
-    borderRadius: 8,
-    padding: "1.25rem 1.5rem",
+    background: C.card,
+    border: `1px solid ${C.border}`,
+    borderRadius: 12,
+    padding: "1.3rem 1.5rem",
     marginBottom: "1rem",
-    boxShadow: "0 1px 4px rgba(0,0,0,0.05)",
+    boxShadow: "0 1px 3px rgba(15, 23, 42, 0.06)",
     cursor: "default",
   },
   factBox: {
-    background: "#1a1a2e",
-    borderRadius: 8,
-    padding: "1.25rem 1.5rem",
+    background: C.tealTint,
+    border: `1px solid ${C.tealTintBorder}`,
+    borderRadius: 12,
+    padding: "0.5rem 1.5rem",
     marginBottom: "1.5rem",
   },
   factRow: {
     display: "flex",
     justifyContent: "space-between",
-    borderBottom: "1px solid #2a3a5e",
-    padding: "0.5rem 0",
-    fontFamily: "sans-serif",
-    fontSize: 13,
+    alignItems: "center",
+    gap: 16,
+    borderBottom: `1px solid ${C.tealTintBorder}`,
+    padding: "0.7rem 0",
+    fontSize: 14,
   },
   factLabel: {
-    color: "#7c9ab5",
+    color: C.muted,
     textTransform: "uppercase",
     letterSpacing: "0.08em",
     fontSize: 11,
-    paddingTop: 2,
+    fontWeight: 700,
   },
   factValue: {
-    color: "#e8e4d9",
+    color: C.ink,
     fontWeight: 600,
     textAlign: "right",
   },

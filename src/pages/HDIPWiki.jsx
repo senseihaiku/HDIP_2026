@@ -148,6 +148,13 @@ The core deliverable is the HDIP Operating Model: a structured framework definin
         "Property and innovation cluster development partner for GoCo Health Innovation City. Supports dissemination and community development activities.",
       keyPeople: ["Britta Stensson (Reference Group)"],
     },
+    {
+      name: "SafeSpring",
+      role: "Secure Infrastructure Partner (WP2 & WP5)",
+      type: "supporting",
+      description:
+        "Swedish provider of secure, GDPR-compliant cloud infrastructure. As the technology partner supplying data infrastructure for AI use and for research and educational organisations, SafeSpring joins WP2 (Governance & Operations) so the project can understand how a provider of this kind would operate and maintain the platform together with a partner over time, and how it fits their existing pricing and business model. Through WP5 (Communication & Dissemination), SafeSpring helps provide, document, and disseminate these results to other organisations via articles, seminars, and related activities.",
+    },
   ],
 
   useCases: [
